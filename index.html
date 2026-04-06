@@ -1,30 +1,9 @@
-
-    /* ── GEO & HOTJAR ── */
-    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-    .geo-card { background: #fafaf8; border-radius: 10px; padding: 16px; }
-    .geo-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #888; margin: 0 0 12px; }
-    .geo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
-    .geo-bar-wrap { flex: 1; height: 6px; background: #eee; border-radius: 3px; }
-    .geo-bar { height: 100%; border-radius: 3px; }
-    .geo-bar.us { background: #4a7cff; }
-    .geo-bar.intl { background: #f5a623; }
-    .geo-bar.hj { background: #fd3a5c; }
-    .geo-name { min-width: 100px; color: #333; }
-    .geo-val { min-width: 50px; text-align: right; font-weight: 600; color: #555; font-size: 12px; }
-    .hj-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-    .hj-kpi { background: #fafaf8; border-radius: 10px; padding: 14px; text-align: center; }
-    .hj-kpi .k-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 4px; }
-    .hj-kpi .k-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-    .hj-kpi .k-sub { font-size: 10px; color: #aaa; margin-top: 2px; }
-    .issue-tag { display: inline-block; background: #fff3f3; color: #d44; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px; }
-    .channel-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- saved from url=(0090)file:///Users/jeany/Downloads/Trend%20Notes%20%E2%80%93%20Performance%20Report%20copy.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trend Notes â Performance Report</title>
+  <title>Trend Notes Ã¢ÂÂ Performance Report</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -46,7 +25,7 @@
       box-shadow: 0 6px 32px rgba(0,0,0,0.10);
     }
 
-    /* ââ HEADER ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ HEADER Ã¢ÂÂÃ¢ÂÂ */
     .header {
       background: #111;
       color: #fff;
@@ -58,7 +37,7 @@
     .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; }
     .header-left p  { font-size: 12px; color: #888; margin-top: 3px; }
 
-    /* ââ DATE FILTER BAR ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ DATE FILTER BAR Ã¢ÂÂÃ¢ÂÂ */
     .filter-bar {
       background: #1a1a1a;
       padding: 14px 48px;
@@ -107,7 +86,7 @@
     .preset-btn:hover  { background: #333; color: #fff; border-color: #555; }
     .preset-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
 
-    /* ââ PERIOD BADGE ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ PERIOD BADGE Ã¢ÂÂÃ¢ÂÂ */
     .period-badge {
       padding: 10px 48px 0;
       font-size: 11.5px;
@@ -115,7 +94,7 @@
     }
     .period-badge strong { color: #333; }
 
-    /* ââ BODY ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ BODY Ã¢ÂÂÃ¢ÂÂ */
     .body { padding: 28px 48px 36px; }
 
     .section-label {
@@ -123,7 +102,7 @@
       text-transform: uppercase; color: #aaa; margin-bottom: 12px;
     }
 
-    /* ââ KPI GRIDS ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ KPI GRIDS Ã¢ÂÂÃ¢ÂÂ */
     .kpi-grid { display: grid; gap: 10px; margin-bottom: 24px; }
     .kpi-grid.g4 { grid-template-columns: repeat(4, 1fr); }
     .kpi-grid.g3 { grid-template-columns: repeat(3, 1fr); }
@@ -139,10 +118,10 @@
     .kpi .k-value { font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.8px; line-height: 1; margin-bottom: 5px; }
     .kpi .k-sub   { font-size: 11px; color: #bbb; }
 
-    /* ââ DIVIDER ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ DIVIDER Ã¢ÂÂÃ¢ÂÂ */
     hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
 
-    /* ââ CHART CARDS ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ CHART CARDS Ã¢ÂÂÃ¢ÂÂ */
     .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
     .chart-grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 24px; }
 
@@ -156,7 +135,7 @@
     .chart-sub   { font-size: 10.5px; color: #bbb; margin-bottom: 14px; }
     canvas { display: block; }
 
-    /* ââ FUNNEL ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ FUNNEL Ã¢ÂÂÃ¢ÂÂ */
     .funnel { display: flex; flex-direction: column; gap: 9px; padding-top: 2px; }
     .funnel-step { display: flex; align-items: center; gap: 10px; }
     .funnel-label { font-size: 11px; color: #777; min-width: 90px; text-align: right; }
@@ -165,7 +144,7 @@
     .funnel-bar-fill span { font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
     .funnel-pct { font-size: 10.5px; color: #bbb; min-width: 40px; text-align: right; }
 
-    /* ââ HIGHLIGHTS ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ */
     .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
     .hl { border-left: 3px solid #ddd; padding: 13px 16px; background: #fafafa; border-radius: 0 8px 8px 0; }
     .hl.green { border-color: #22a06b; }
@@ -175,21 +154,21 @@
     .hl .hl-txt { font-size: 12.5px; line-height: 1.55; color: #444; }
     .hl strong { color: #111; }
 
-    /* ââ FOCUS ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ FOCUS Ã¢ÂÂÃ¢ÂÂ */
     .focus { background: #f8f8f7; border: 1px solid #e8e8e8; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
     .focus h3 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 12px; }
     .focus ol { padding-left: 18px; }
     .focus li { font-size: 12.5px; color: #444; line-height: 1.55; margin-bottom: 8px; }
     .focus li strong { color: #111; }
 
-    /* ââ DATA NOTE ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ DATA NOTE Ã¢ÂÂÃ¢ÂÂ */
     .data-note {
       background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
       padding: 10px 14px; margin-bottom: 24px;
       font-size: 11.5px; color: #92400e; line-height: 1.5;
     }
 
-    /* ââ SOURCE LINKS ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ SOURCE LINKS Ã¢ÂÂÃ¢ÂÂ */
     .sources {
       border-top: 1px solid #eee;
       padding: 16px 48px;
@@ -213,7 +192,7 @@
     .src-link:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
     .src-link .src-icon { font-size: 13px; line-height: 1; }
 
-    /* ââ FOOTER ââ */
+    /* Ã¢ÂÂÃ¢ÂÂ FOOTER Ã¢ÂÂÃ¢ÂÂ */
     .footer { border-top: 1px solid #eee; padding: 14px 48px; display: flex; justify-content: space-between; align-items: center; }
     .footer .brand { font-size: 11.5px; font-weight: 600; color: #aaa; }
     .footer .note  { font-size: 10.5px; color: #ccc; }
@@ -223,7 +202,27 @@
       .page { box-shadow: none; border-radius: 0; max-width: 100%; }
       .filter-bar { display: none; }
     }
-  </style>
+  
+    /* ââ GEO & HOTJAR ââ */
+    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .geo-card { background: #fafaf8; border-radius: 10px; padding: 16px; }
+    .geo-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #888; margin: 0 0 12px; }
+    .geo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
+    .geo-bar-wrap { flex: 1; height: 6px; background: #eee; border-radius: 3px; }
+    .geo-bar { height: 100%; border-radius: 3px; }
+    .geo-bar.us { background: #4a7cff; }
+    .geo-bar.intl { background: #f5a623; }
+    .geo-bar.hj { background: #fd3a5c; }
+    .geo-name { min-width: 100px; color: #333; }
+    .geo-val { min-width: 50px; text-align: right; font-weight: 600; color: #555; font-size: 12px; }
+    .hj-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .hj-kpi { background: #fafaf8; border-radius: 10px; padding: 14px; text-align: center; }
+    .hj-kpi .k-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 4px; }
+    .hj-kpi .k-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+    .hj-kpi .k-sub { font-size: 10px; color: #aaa; margin-top: 2px; }
+    .issue-tag { display: inline-block; background: #fff3f3; color: #d44; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px; }
+    .channel-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
+    </style>
 <style id="claude-agent-animation-styles">
       @keyframes claude-pulse {
         0% {
@@ -253,7 +252,7 @@
   <div class="header">
     <div class="header-left">
       <h1>Trend Notes</h1>
-      <p>Performance Report &nbsp;Â·&nbsp; Interactive</p>
+      <p>Performance Report &nbsp;ÃÂ·&nbsp; Interactive</p>
     </div>
   </div>
 
@@ -261,26 +260,26 @@
   <div class="filter-bar">
     <label>From</label>
     <input type="date" id="startDate" value="2026-03-01" min="2026-03-01" max="2026-03-31">
-    <span class="filter-sep">â</span>
+    <span class="filter-sep">Ã¢ÂÂ</span>
     <label>To</label>
     <input type="date" id="endDate" value="2026-03-31" min="2026-03-01" max="2026-03-31">
     <div class="filter-presets">
       <button class="preset-btn active" data-start="2026-03-01" data-end="2026-03-31">Full Month</button>
-      <button class="preset-btn" data-start="2026-03-01" data-end="2026-03-15">Mar 1â15</button>
-      <button class="preset-btn" data-start="2026-03-16" data-end="2026-03-31">Mar 16â31</button>
+      <button class="preset-btn" data-start="2026-03-01" data-end="2026-03-15">Mar 1Ã¢ÂÂ15</button>
+      <button class="preset-btn" data-start="2026-03-16" data-end="2026-03-31">Mar 16Ã¢ÂÂ31</button>
       <button class="preset-btn" data-start="2026-03-23" data-end="2026-03-31">Last 9 Days</button>
     </div>
   </div>
 
   <!-- PERIOD BADGE -->
   <div class="period-badge">
-    Showing data for <strong id="periodLabel">March 1, 2026 â March 31, 2026</strong>
+    Showing data for <strong id="periodLabel">March 1, 2026 Ã¢ÂÂ March 31, 2026</strong>
   </div>
 
   <!-- BODY -->
   <div class="body">
 
-    <!-- ââ HIGHLIGHTS ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ -->
     <div class="section-label">Key Highlights</div>
     <div class="highlights">
       <div class="hl green">
@@ -289,7 +288,7 @@
       </div>
       <div class="hl blue">
         <div class="hl-tag">Search Presence</div>
-        <div class="hl-txt">Ranks <strong>position 3.4</strong> for brand name searches, with a <strong>53% CTR</strong> â well above the ~3â5% industry average.</div>
+        <div class="hl-txt">Ranks <strong>position 3.4</strong> for brand name searches, with a <strong>53% CTR</strong> Ã¢ÂÂ well above the ~3Ã¢ÂÂ5% industry average.</div>
       </div>
       <div class="hl green">
         <div class="hl-tag">First Order</div>
@@ -301,21 +300,21 @@
       </div>
     </div>
 
-    <!-- ââ FOCUS ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ FOCUS Ã¢ÂÂÃ¢ÂÂ -->
     <div class="focus">
       <h3>Recommended Focus for April</h3>
       <ol>
-        <li><strong>Cart abandonment recovery</strong> â An email sequence or retargeting campaign targeting the 98-to-1 drop-off is the single biggest revenue lever right now.</li>
-        <li><strong>Non-branded organic content</strong> â Nearly all search traffic today comes from people who already know the brand. Ranking for discovery keywords brings in new audiences.</li>
-        <li><strong>Spanish-language audience</strong> â The /es page has a 76% engagement rate, the highest on the site, suggesting an underserved, high-intent audience.</li>
+        <li><strong>Cart abandonment recovery</strong> Ã¢ÂÂ An email sequence or retargeting campaign targeting the 98-to-1 drop-off is the single biggest revenue lever right now.</li>
+        <li><strong>Non-branded organic content</strong> Ã¢ÂÂ Nearly all search traffic today comes from people who already know the brand. Ranking for discovery keywords brings in new audiences.</li>
+        <li><strong>Spanish-language audience</strong> Ã¢ÂÂ The /es page has a 76% engagement rate, the highest on the site, suggesting an underserved, high-intent audience.</li>
       </ol>
     </div>
 
     <hr>
 
 
-    <!-- ââ GA4 KPIs ââ -->
-    <div class="section-label">Site Traffic &nbsp;Â·&nbsp; Google Analytics 4</div>
+    <!-- Ã¢ÂÂÃ¢ÂÂ GA4 KPIs Ã¢ÂÂÃ¢ÂÂ -->
+    <div class="section-label">Site Traffic &nbsp;ÃÂ·&nbsp; Google Analytics 4</div>
     <div class="kpi-grid g4">
       <div class="kpi"><div class="k-label">Sessions</div><div class="k-value" id="kpi-sessions">2,039</div><div class="k-sub" id="kpi-sessions-sub">31-day total</div></div>
       <div class="kpi"><div class="k-label">Page Views</div><div class="k-value" id="kpi-views">4,109</div><div class="k-sub" id="kpi-views-sub">31-day total</div></div>
@@ -323,11 +322,11 @@
       <div class="kpi"><div class="k-label">Engagement Rate</div><div class="k-value">38.5%</div><div class="k-sub">+19.9% vs prior period</div></div>
     </div>
 
-    <!-- ââ TRAFFIC + DEVICE ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ TRAFFIC + DEVICE Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-grid-3">
       <div class="chart-card">
         <div class="chart-title">Traffic Trend</div>
-        <div class="chart-sub" id="trafficChartSub">Sessions &amp; views â daily (31 days)</div>
+        <div class="chart-sub" id="trafficChartSub">Sessions &amp; views Ã¢ÂÂ daily (31 days)</div>
         <div style="position:relative;height:185px;">
           <canvas id="trafficChart" width="828" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 414px;"></canvas>
         </div>
@@ -343,8 +342,8 @@
 
     <hr>
 
-    <!-- ââ GSC KPIs ââ -->
-    <div class="section-label">Search Visibility &nbsp;Â·&nbsp; Google Search Console</div>
+    <!-- Ã¢ÂÂÃ¢ÂÂ GSC KPIs Ã¢ÂÂÃ¢ÂÂ -->
+    <div class="section-label">Search Visibility &nbsp;ÃÂ·&nbsp; Google Search Console</div>
     <div class="kpi-grid g4">
       <div class="kpi"><div class="k-label">Clicks</div><div class="k-value" id="kpi-clicks">164</div><div class="k-sub" id="kpi-clicks-sub">31-day total</div></div>
       <div class="kpi"><div class="k-label">Impressions</div><div class="k-value" id="kpi-impr">1,667</div><div class="k-sub" id="kpi-impr-sub">31-day total</div></div>
@@ -352,7 +351,7 @@
       <div class="kpi"><div class="k-label">Avg. Search Position</div><div class="k-value">8.3</div><div class="k-sub">Page 1 of Google</div></div>
     </div>
 
-    <!-- ââ TOP PAGES + GSC BAR ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ TOP PAGES + GSC BAR Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-grid-2">
       <div class="chart-card">
         <div class="chart-title">Top Landing Pages by Views</div>
@@ -363,7 +362,7 @@
       </div>
       <div class="chart-card">
         <div class="chart-title">Daily Search Clicks</div>
-        <div class="chart-sub" id="gscChartSub">GSC clicks &amp; impressions â 31 days</div>
+        <div class="chart-sub" id="gscChartSub">GSC clicks &amp; impressions Ã¢ÂÂ 31 days</div>
         <div style="position:relative;height:185px;">
           <canvas id="gscChart" width="714" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
         </div>
@@ -372,18 +371,18 @@
 
     <hr>
 
-    <!-- ââ SHOPIFY KPIs ââ -->
-    <div class="section-label">E-commerce &nbsp;Â·&nbsp; Shopify</div>
+    <!-- Ã¢ÂÂÃ¢ÂÂ SHOPIFY KPIs Ã¢ÂÂÃ¢ÂÂ -->
+    <div class="section-label">E-commerce &nbsp;ÃÂ·&nbsp; Shopify</div>
     <div class="kpi-grid g3">
       <div class="kpi"><div class="k-label">Revenue</div><div class="k-value">$406.25</div><div class="k-sub">First month of live orders</div></div>
       <div class="kpi"><div class="k-label">Orders Placed</div><div class="k-value">1</div><div class="k-sub">Avg. order value: $406.25</div></div>
       <div class="kpi"><div class="k-label">Add-to-Cart Events</div><div class="k-value">98</div><div class="k-sub">1 purchase completed</div></div>
     </div>
 
-    <!-- ââ FUNNEL ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ FUNNEL Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-card" style="margin-bottom:24px;">
       <div class="chart-title">Conversion Pipeline</div>
-      <div class="chart-sub">Sessions â Add-to-Cart â Completed Order â full month</div>
+      <div class="chart-sub">Sessions Ã¢ÂÂ Add-to-Cart Ã¢ÂÂ Completed Order Ã¢ÂÂ full month</div>
       <div class="funnel">
         <div class="funnel-step">
           <div class="funnel-label">Sessions</div>
@@ -411,42 +410,42 @@
 
     <hr>
 
-    <!-- ââ KLAVIYO EMAIL ââ -->
-    <div class="section-label">Email Marketing &nbsp;Â·&nbsp; Klaviyo</div>
+    <!-- Ã¢ÂÂÃ¢ÂÂ KLAVIYO EMAIL Ã¢ÂÂÃ¢ÂÂ -->
+    <div class="section-label">Email Marketing &nbsp;ÃÂ·&nbsp; Klaviyo</div>
     <div class="kpi-grid g4" style="margin-bottom:14px;">
       <div class="kpi" style="border-style:dashed;">
         <div class="k-label">List Size</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">â</div>
+        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
         <div class="k-sub">Pending connection</div>
       </div>
       <div class="kpi" style="border-style:dashed;">
         <div class="k-label">Avg Open Rate</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">â</div>
+        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
         <div class="k-sub">Pending connection</div>
       </div>
       <div class="kpi" style="border-style:dashed;">
         <div class="k-label">Avg Click Rate</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">â</div>
+        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
         <div class="k-sub">Pending connection</div>
       </div>
       <div class="kpi" style="border-style:dashed;">
         <div class="k-label">Revenue Attributed</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">â</div>
+        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
         <div class="k-sub">Pending connection</div>
       </div>
     </div>
     <div class="data-note" style="margin-bottom:28px;">
-      <strong>Klaviyo connection in progress.</strong> Once connected via the Monday scheduled task, this section will automatically populate with list size, campaign open/click rates, flow performance, and email-attributed revenue for the selected week. &nbsp;<a href="https://app.klaviyo.com/" target="_blank" style="color:#92400e;font-weight:600;">Open Klaviyo â</a>
+      <strong>Klaviyo connection in progress.</strong> Once connected via the Monday scheduled task, this section will automatically populate with list size, campaign open/click rates, flow performance, and email-attributed revenue for the selected week. &nbsp;<a href="https://app.klaviyo.com/" target="_blank" style="color:#92400e;font-weight:600;">Open Klaviyo Ã¢ÂÂ</a>
     </div>
 
-    <!-- ââ DATA NOTE ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ DATA NOTE Ã¢ÂÂÃ¢ÂÂ -->
     <div class="data-note">
-      Note: GA4 daily data prior to Mar 22 is estimated from weekly aggregates. GSC daily data covers Mar 4â30. Shopify e-commerce figures reflect full-month totals regardless of date range. For live auto-updating data, connect via the GA4, Search Console, and Shopify APIs.
+      Note: GA4 daily data prior to Mar 22 is estimated from weekly aggregates. GSC daily data covers Mar 4Ã¢ÂÂ30. Shopify e-commerce figures reflect full-month totals regardless of date range. For live auto-updating data, connect via the GA4, Search Console, and Shopify APIs.
     </div>
 
 
 
-    <!-- ── GA4 GEOGRAPHIC DATA ── -->
+    <!-- ââ GA4 GEOGRAPHIC DATA ââ -->
     <div class="section-label">Visitor Geography &nbsp;&middot;&nbsp; Google Analytics 4 &nbsp;&middot;&nbsp; March 2026</div>
     <div class="geo-grid">
       <div class="geo-card">
@@ -477,7 +476,7 @@
       </div>
     </div>
 
-    <!-- ── HOTJAR BEHAVIORAL ANALYTICS ── -->
+    <!-- ââ HOTJAR BEHAVIORAL ANALYTICS ââ -->
     <div class="section-label">Behavioral Analytics &nbsp;&middot;&nbsp; Hotjar &nbsp;&middot;&nbsp; Last 30 Days</div>
     <div class="hj-kpi-grid">
       <div class="hj-kpi"><div class="k-label">Sessions</div><div class="k-value">456</div><div class="k-sub">35% sampled</div></div>
@@ -532,43 +531,43 @@
   <div class="sources">
     <span class="sources-label">Sources</span>
     <a class="src-link" href="https://lookerstudio.google.com/u/1/reporting/8c104555-4336-4f6b-ac0d-818e18210cd0" target="_blank">
-      <span class="src-icon">ð</span> Looker Studio Dashboard
+      <span class="src-icon">Ã°ÂÂÂ</span> Looker Studio Dashboard
     </a>
     <a class="src-link" href="https://analytics.google.com/" target="_blank">
-      <span class="src-icon">ð</span> Google Analytics 4
+      <span class="src-icon">Ã°ÂÂÂ</span> Google Analytics 4
     </a>
     <a class="src-link" href="https://search.google.com/search-console/" target="_blank">
-      <span class="src-icon">ð</span> Search Console
+      <span class="src-icon">Ã°ÂÂÂ</span> Search Console
     </a>
     <a class="src-link" href="https://docs.google.com/spreadsheets/d/1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4" target="_blank">
-      <span class="src-icon">ð</span> Shopify Data Sheet
+      <span class="src-icon">Ã°ÂÂÂ</span> Shopify Data Sheet
     </a>
     <a class="src-link" href="https://app.klaviyo.com/" target="_blank">
-      <span class="src-icon">âï¸</span> Klaviyo
+      <span class="src-icon">Ã¢ÂÂÃ¯Â¸Â</span> Klaviyo
     </a>
     <a class="src-link" href="https://insights.hotjar.com/sites/6507654/dashboard" target="_blank">
-      <span class="src-icon">ð¥</span> Hotjar Heatmaps
+      <span class="src-icon">Ã°ÂÂÂ¥</span> Hotjar Heatmaps
     </a>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <div class="brand">Trend Notes &nbsp;Â·&nbsp; Performance Report</div>
-    <div class="note">Data: Google Analytics 4 Â· Google Search Console Â· Shopify</div>
+    <div class="brand">Trend Notes &nbsp;ÃÂ·&nbsp; Performance Report</div>
+    <div class="note">Data: Google Analytics 4 ÃÂ· Google Search Console ÃÂ· Shopify</div>
   </div>
 
 </div>
 
 <script>
-// âââââââââââââââââââââââââââââââââââââââââââââ
-// DAILY DATA (GA4 & GSC) â March 2026
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// DAILY DATA (GA4 & GSC) Ã¢ÂÂ March 2026
 // GA4: daily actuals Mar 22-31; earlier days
 //      are weekly averages distributed evenly.
 // GSC: daily actuals Mar 4-30 from dashboard.
-// âââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 const dailyData = [
-  // Mar 1â8 (GA4 from week avg: 341s/521v Ã· 7 â 49/74 per day; GSC Mar 1-3 estimated)
+  // Mar 1Ã¢ÂÂ8 (GA4 from week avg: 341s/521v ÃÂ· 7 Ã¢ÂÂ 49/74 per day; GSC Mar 1-3 estimated)
   { d:'2026-03-01', s:47, v:72,  gc:0,  gi:0  },
   { d:'2026-03-02', s:50, v:76,  gc:0,  gi:0  },
   { d:'2026-03-03', s:48, v:73,  gc:0,  gi:0  },
@@ -577,7 +576,7 @@ const dailyData = [
   { d:'2026-03-06', s:48, v:73,  gc:6,  gi:39 },
   { d:'2026-03-07', s:49, v:75,  gc:3,  gi:38 },
   { d:'2026-03-08', s:49, v:74,  gc:3,  gi:35 },
-  // Mar 9â15 (GA4 week avg: 615s/1231v Ã· 7 â 88/176)
+  // Mar 9Ã¢ÂÂ15 (GA4 week avg: 615s/1231v ÃÂ· 7 Ã¢ÂÂ 88/176)
   { d:'2026-03-09', s:88, v:175, gc:6,  gi:76 },
   { d:'2026-03-10', s:90, v:178, gc:12, gi:72 },
   { d:'2026-03-11', s:87, v:174, gc:5,  gi:99 },
@@ -585,14 +584,14 @@ const dailyData = [
   { d:'2026-03-13', s:88, v:176, gc:6,  gi:64 },
   { d:'2026-03-14', s:87, v:175, gc:5,  gi:67 },
   { d:'2026-03-15', s:86, v:176, gc:5,  gi:71 },
-  // Mar 16â21 (GA4 week avg: 408s/920v Ã· 7 â 58/131)
+  // Mar 16Ã¢ÂÂ21 (GA4 week avg: 408s/920v ÃÂ· 7 Ã¢ÂÂ 58/131)
   { d:'2026-03-16', s:59, v:132, gc:5,  gi:79 },
   { d:'2026-03-17', s:57, v:130, gc:3,  gi:51 },
   { d:'2026-03-18', s:58, v:131, gc:6,  gi:63 },
   { d:'2026-03-19', s:60, v:134, gc:12, gi:62 },
   { d:'2026-03-20', s:57, v:130, gc:2,  gi:38 },
   { d:'2026-03-21', s:58, v:131, gc:3,  gi:40 },
-  // Mar 22â31 (GA4 daily actuals from dashboard)
+  // Mar 22Ã¢ÂÂ31 (GA4 daily actuals from dashboard)
   { d:'2026-03-22', s:46, v:88,  gc:6,  gi:44 },
   { d:'2026-03-23', s:56, v:120, gc:3,  gi:60 },
   { d:'2026-03-24', s:55, v:161, gc:7,  gi:74 },
@@ -605,9 +604,9 @@ const dailyData = [
   { d:'2026-03-31', s:97, v:214, gc:0,  gi:0  },
 ];
 
-// âââââââââââââââââââââââââââââââââââââââââââââ
-// CHARTS â initialise
-// âââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// CHARTS Ã¢ÂÂ initialise
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 const blue   = '#2563eb';
 const purple = '#7c3aed';
 const green  = '#22a06b';
@@ -640,7 +639,7 @@ const trafficChart = new Chart(trafficCtx, {
   }
 });
 
-// Device Donut (static â cumulative all-time)
+// Device Donut (static Ã¢ÂÂ cumulative all-time)
 new Chart(document.getElementById('deviceChart').getContext('2d'), {
   type: 'doughnut',
   data: {
@@ -699,9 +698,9 @@ const gscChart = new Chart(gscCtx, {
   }
 });
 
-// âââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 // FILTER LOGIC
-// âââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 function fmt(dateStr) {
   const d = new Date(dateStr + 'T00:00:00');
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -720,14 +719,14 @@ function applyFilter() {
 
   // Update period label
   document.getElementById('periodLabel').textContent =
-    `${fmtFull(start)} â ${fmtFull(end)}`;
+    `${fmtFull(start)} Ã¢ÂÂ ${fmtFull(end)}`;
 
   // KPI totals
   const totSessions = filtered.reduce((a,r) => a + r.s, 0);
   const totViews    = filtered.reduce((a,r) => a + r.v, 0);
   const totClicks   = filtered.reduce((a,r) => a + r.gc, 0);
   const totImpr     = filtered.reduce((a,r) => a + r.gi, 0);
-  const ctr = totImpr > 0 ? ((totClicks / totImpr) * 100).toFixed(1) + '%' : 'â';
+  const ctr = totImpr > 0 ? ((totClicks / totImpr) * 100).toFixed(1) + '%' : 'Ã¢ÂÂ';
   const days = filtered.length;
 
   document.getElementById('kpi-sessions').textContent = totSessions.toLocaleString();
@@ -746,7 +745,7 @@ function applyFilter() {
   trafficChart.data.datasets[0].data = filtered.map(r => r.s);
   trafficChart.data.datasets[1].data = filtered.map(r => r.v);
   document.getElementById('trafficChartSub').textContent =
-    `Sessions & views â ${days <= 7 ? 'daily' : days <= 14 ? 'daily' : 'daily'} (${days} days)`;
+    `Sessions & views Ã¢ÂÂ ${days <= 7 ? 'daily' : days <= 14 ? 'daily' : 'daily'} (${days} days)`;
   trafficChart.update();
 
   // GSC chart
@@ -754,7 +753,7 @@ function applyFilter() {
   gscChart.data.datasets[0].data = filtered.map(r => r.gc);
   gscChart.data.datasets[1].data = filtered.map(r => r.gi);
   document.getElementById('gscChartSub').textContent =
-    `GSC clicks & impressions â ${days} days`;
+    `GSC clicks & impressions Ã¢ÂÂ ${days} days`;
   gscChart.update();
 
   // Preset button active state
