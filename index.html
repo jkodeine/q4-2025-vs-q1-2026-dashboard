@@ -1,783 +1,145 @@
-<!DOCTYPE html>
-<!-- saved from url=(0090)file:///Users/jeany/Downloads/Trend%20Notes%20%E2%80%93%20Performance%20Report%20copy.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trend Notes Ã¢ÂÂ Performance Report</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f0efed;
-      color: #1a1a1a;
-      padding: 32px 20px;
-    }
-
-    .page {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 6px 32px rgba(0,0,0,0.10);
-    }
-
-    /* Ã¢ÂÂÃ¢ÂÂ HEADER Ã¢ÂÂÃ¢ÂÂ */
-    .header {
-      background: #111;
-      color: #fff;
-      padding: 30px 48px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; }
-    .header-left p  { font-size: 12px; color: #888; margin-top: 3px; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ DATE FILTER BAR Ã¢ÂÂÃ¢ÂÂ */
-    .filter-bar {
-      background: #1a1a1a;
-      padding: 14px 48px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      border-bottom: 1px solid #2a2a2a;
-      flex-wrap: wrap;
-    }
-    .filter-bar label {
-      font-size: 11px;
-      color: #888;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .filter-bar input[type="date"] {
-      background: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      color: #ddd;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      cursor: pointer;
-    }
-    .filter-bar input[type="date"]:focus { border-color: #555; }
-    .filter-sep { color: #555; font-size: 13px; }
-    .filter-presets {
-      display: flex;
-      gap: 6px;
-      margin-left: auto;
-    }
-    .preset-btn {
-      background: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      color: #aaa;
-      border-radius: 5px;
-      padding: 5px 10px;
-      font-size: 11px;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .preset-btn:hover  { background: #333; color: #fff; border-color: #555; }
-    .preset-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ PERIOD BADGE Ã¢ÂÂÃ¢ÂÂ */
-    .period-badge {
-      padding: 10px 48px 0;
-      font-size: 11.5px;
-      color: #aaa;
-    }
-    .period-badge strong { color: #333; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ BODY Ã¢ÂÂÃ¢ÂÂ */
-    .body { padding: 28px 48px 36px; }
-
-    .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-      text-transform: uppercase; color: #aaa; margin-bottom: 12px;
-    }
-
-    /* Ã¢ÂÂÃ¢ÂÂ KPI GRIDS Ã¢ÂÂÃ¢ÂÂ */
-    .kpi-grid { display: grid; gap: 10px; margin-bottom: 24px; }
-    .kpi-grid.g4 { grid-template-columns: repeat(4, 1fr); }
-    .kpi-grid.g3 { grid-template-columns: repeat(3, 1fr); }
-
-    .kpi {
-      background: #f8f8f7;
-      border: 1px solid #e8e8e8;
-      border-radius: 8px;
-      padding: 16px 14px;
-      transition: background 0.2s;
-    }
-    .kpi .k-label { font-size: 10.5px; font-weight: 500; color: #999; margin-bottom: 7px; }
-    .kpi .k-value { font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.8px; line-height: 1; margin-bottom: 5px; }
-    .kpi .k-sub   { font-size: 11px; color: #bbb; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ DIVIDER Ã¢ÂÂÃ¢ÂÂ */
-    hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ CHART CARDS Ã¢ÂÂÃ¢ÂÂ */
-    .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-    .chart-grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 24px; }
-
-    .chart-card {
-      background: #f8f8f7;
-      border: 1px solid #e8e8e8;
-      border-radius: 10px;
-      padding: 18px;
-    }
-    .chart-title { font-size: 12px; font-weight: 600; color: #333; margin-bottom: 3px; }
-    .chart-sub   { font-size: 10.5px; color: #bbb; margin-bottom: 14px; }
-    canvas { display: block; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ FUNNEL Ã¢ÂÂÃ¢ÂÂ */
-    .funnel { display: flex; flex-direction: column; gap: 9px; padding-top: 2px; }
-    .funnel-step { display: flex; align-items: center; gap: 10px; }
-    .funnel-label { font-size: 11px; color: #777; min-width: 90px; text-align: right; }
-    .funnel-bar-wrap { flex: 1; background: #ebebeb; border-radius: 4px; height: 26px; overflow: hidden; }
-    .funnel-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; transition: width 0.4s ease; }
-    .funnel-bar-fill span { font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
-    .funnel-pct { font-size: 10.5px; color: #bbb; min-width: 40px; text-align: right; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ */
-    .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-    .hl { border-left: 3px solid #ddd; padding: 13px 16px; background: #fafafa; border-radius: 0 8px 8px 0; }
-    .hl.green { border-color: #22a06b; }
-    .hl.blue  { border-color: #2563eb; }
-    .hl.amber { border-color: #d97706; }
-    .hl .hl-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #bbb; margin-bottom: 4px; }
-    .hl .hl-txt { font-size: 12.5px; line-height: 1.55; color: #444; }
-    .hl strong { color: #111; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ FOCUS Ã¢ÂÂÃ¢ÂÂ */
-    .focus { background: #f8f8f7; border: 1px solid #e8e8e8; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
-    .focus h3 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 12px; }
-    .focus ol { padding-left: 18px; }
-    .focus li { font-size: 12.5px; color: #444; line-height: 1.55; margin-bottom: 8px; }
-    .focus li strong { color: #111; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ DATA NOTE Ã¢ÂÂÃ¢ÂÂ */
-    .data-note {
-      background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
-      padding: 10px 14px; margin-bottom: 24px;
-      font-size: 11.5px; color: #92400e; line-height: 1.5;
-    }
-
-    /* Ã¢ÂÂÃ¢ÂÂ SOURCE LINKS Ã¢ÂÂÃ¢ÂÂ */
-    .sources {
-      border-top: 1px solid #eee;
-      padding: 16px 48px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      background: #fafafa;
-    }
-    .sources-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
-      text-transform: uppercase; color: #bbb; margin-right: 4px;
-    }
-    .src-link {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: #fff; border: 1px solid #e4e4e4;
-      border-radius: 5px; padding: 5px 10px;
-      font-size: 11.5px; font-weight: 500; color: #444;
-      text-decoration: none; transition: all 0.15s;
-    }
-    .src-link:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
-    .src-link .src-icon { font-size: 13px; line-height: 1; }
-
-    /* Ã¢ÂÂÃ¢ÂÂ FOOTER Ã¢ÂÂÃ¢ÂÂ */
-    .footer { border-top: 1px solid #eee; padding: 14px 48px; display: flex; justify-content: space-between; align-items: center; }
-    .footer .brand { font-size: 11.5px; font-weight: 600; color: #aaa; }
-    .footer .note  { font-size: 10.5px; color: #ccc; }
-
-    @media print {
-      body { background: white; padding: 0; }
-      .page { box-shadow: none; border-radius: 0; max-width: 100%; }
-      .filter-bar { display: none; }
-    }
-  
-    /* ââ GEO & HOTJAR ââ */
-    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-    .geo-card { background: #fafaf8; border-radius: 10px; padding: 16px; }
-    .geo-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #888; margin: 0 0 12px; }
-    .geo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
-    .geo-bar-wrap { flex: 1; height: 6px; background: #eee; border-radius: 3px; }
-    .geo-bar { height: 100%; border-radius: 3px; }
-    .geo-bar.us { background: #4a7cff; }
-    .geo-bar.intl { background: #f5a623; }
-    .geo-bar.hj { background: #fd3a5c; }
-    .geo-name { min-width: 100px; color: #333; }
-    .geo-val { min-width: 50px; text-align: right; font-weight: 600; color: #555; font-size: 12px; }
-    .hj-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-    .hj-kpi { background: #fafaf8; border-radius: 10px; padding: 14px; text-align: center; }
-    .hj-kpi .k-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 4px; }
-    .hj-kpi .k-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-    .hj-kpi .k-sub { font-size: 10px; color: #aaa; margin-top: 2px; }
-    .issue-tag { display: inline-block; background: #fff3f3; color: #d44; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px; }
-    .channel-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
-    </style>
-<style id="claude-agent-animation-styles">
-      @keyframes claude-pulse {
-        0% {
-          box-shadow: 
-            inset 0 0 10px rgba(217, 119, 87, 0.5),
-            inset 0 0 20px rgba(217, 119, 87, 0.3),
-            inset 0 0 30px rgba(217, 119, 87, 0.1);
-        }
-        50% {
-          box-shadow: 
-            inset 0 0 15px rgba(217, 119, 87, 0.7),
-            inset 0 0 25px rgba(217, 119, 87, 0.5),
-            inset 0 0 35px rgba(217, 119, 87, 0.2);
-        }
-        100% {
-          box-shadow: 
-            inset 0 0 10px rgba(217, 119, 87, 0.5),
-            inset 0 0 20px rgba(217, 119, 87, 0.3),
-            inset 0 0 30px rgba(217, 119, 87, 0.1);
-        }
-      }
-    </style></head>
-<body>
-<div class="page">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-left">
-      <h1>Trend Notes</h1>
-      <p>Performance Report &nbsp;ÃÂ·&nbsp; Interactive</p>
-    </div>
-  </div>
-
-  <!-- DATE FILTER BAR -->
-  <div class="filter-bar">
-    <label>From</label>
-    <input type="date" id="startDate" value="2026-03-01" min="2026-03-01" max="2026-03-31">
-    <span class="filter-sep">Ã¢ÂÂ</span>
-    <label>To</label>
-    <input type="date" id="endDate" value="2026-03-31" min="2026-03-01" max="2026-03-31">
-    <div class="filter-presets">
-      <button class="preset-btn active" data-start="2026-03-01" data-end="2026-03-31">Full Month</button>
-      <button class="preset-btn" data-start="2026-03-01" data-end="2026-03-15">Mar 1Ã¢ÂÂ15</button>
-      <button class="preset-btn" data-start="2026-03-16" data-end="2026-03-31">Mar 16Ã¢ÂÂ31</button>
-      <button class="preset-btn" data-start="2026-03-23" data-end="2026-03-31">Last 9 Days</button>
-    </div>
-  </div>
-
-  <!-- PERIOD BADGE -->
-  <div class="period-badge">
-    Showing data for <strong id="periodLabel">March 1, 2026 Ã¢ÂÂ March 31, 2026</strong>
-  </div>
-
-  <!-- BODY -->
-  <div class="body">
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="section-label">Key Highlights</div>
-    <div class="highlights">
-      <div class="hl green">
-        <div class="hl-tag">Momentum</div>
-        <div class="hl-txt">All traffic metrics up <strong>40%+ month-over-month</strong>. The site is growing consistently and keeping users more engaged.</div>
-      </div>
-      <div class="hl blue">
-        <div class="hl-tag">Search Presence</div>
-        <div class="hl-txt">Ranks <strong>position 3.4</strong> for brand name searches, with a <strong>53% CTR</strong> Ã¢ÂÂ well above the ~3Ã¢ÂÂ5% industry average.</div>
-      </div>
-      <div class="hl green">
-        <div class="hl-tag">First Order</div>
-        <div class="hl-txt">The store completed its <strong>first live order</strong> ($406.25), confirming the full purchase flow is working end-to-end.</div>
-      </div>
-      <div class="hl amber">
-        <div class="hl-tag">Opportunity</div>
-        <div class="hl-txt"><strong>98 add-to-cart events</strong> with only 1 completed order. Recovering even 5% of abandoned carts could mean ~5 more orders in April.</div>
-      </div>
-    </div>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ FOCUS Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="focus">
-      <h3>Recommended Focus for April</h3>
-      <ol>
-        <li><strong>Cart abandonment recovery</strong> Ã¢ÂÂ An email sequence or retargeting campaign targeting the 98-to-1 drop-off is the single biggest revenue lever right now.</li>
-        <li><strong>Non-branded organic content</strong> Ã¢ÂÂ Nearly all search traffic today comes from people who already know the brand. Ranking for discovery keywords brings in new audiences.</li>
-        <li><strong>Spanish-language audience</strong> Ã¢ÂÂ The /es page has a 76% engagement rate, the highest on the site, suggesting an underserved, high-intent audience.</li>
-      </ol>
-    </div>
-
-    <hr>
-
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ GA4 KPIs Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="section-label">Site Traffic &nbsp;ÃÂ·&nbsp; Google Analytics 4</div>
-    <div class="kpi-grid g4">
-      <div class="kpi"><div class="k-label">Sessions</div><div class="k-value" id="kpi-sessions">2,039</div><div class="k-sub" id="kpi-sessions-sub">31-day total</div></div>
-      <div class="kpi"><div class="k-label">Page Views</div><div class="k-value" id="kpi-views">4,109</div><div class="k-sub" id="kpi-views-sub">31-day total</div></div>
-      <div class="kpi"><div class="k-label">Active Users</div><div class="k-value">472</div><div class="k-sub">+43.0% vs prior period</div></div>
-      <div class="kpi"><div class="k-label">Engagement Rate</div><div class="k-value">38.5%</div><div class="k-sub">+19.9% vs prior period</div></div>
-    </div>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ TRAFFIC + DEVICE Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="chart-grid-3">
-      <div class="chart-card">
-        <div class="chart-title">Traffic Trend</div>
-        <div class="chart-sub" id="trafficChartSub">Sessions &amp; views Ã¢ÂÂ daily (31 days)</div>
-        <div style="position:relative;height:185px;">
-          <canvas id="trafficChart" width="828" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 414px;"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Sessions by Device</div>
-        <div class="chart-sub">GA4 cumulative</div>
-        <div style="position:relative;height:185px;">
-          <canvas id="deviceChart" width="600" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 300px;"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ GSC KPIs Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="section-label">Search Visibility &nbsp;ÃÂ·&nbsp; Google Search Console</div>
-    <div class="kpi-grid g4">
-      <div class="kpi"><div class="k-label">Clicks</div><div class="k-value" id="kpi-clicks">164</div><div class="k-sub" id="kpi-clicks-sub">31-day total</div></div>
-      <div class="kpi"><div class="k-label">Impressions</div><div class="k-value" id="kpi-impr">1,667</div><div class="k-sub" id="kpi-impr-sub">31-day total</div></div>
-      <div class="kpi"><div class="k-label">Click-Through Rate</div><div class="k-value" id="kpi-ctr">9.8%</div><div class="k-sub">Overall period CTR</div></div>
-      <div class="kpi"><div class="k-label">Avg. Search Position</div><div class="k-value">8.3</div><div class="k-sub">Page 1 of Google</div></div>
-    </div>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ TOP PAGES + GSC BAR Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="chart-grid-2">
-      <div class="chart-card">
-        <div class="chart-title">Top Landing Pages by Views</div>
-        <div class="chart-sub">GA4 cumulative</div>
-        <div style="position:relative;height:185px;">
-          <canvas id="pagesChart" width="714" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Daily Search Clicks</div>
-        <div class="chart-sub" id="gscChartSub">GSC clicks &amp; impressions Ã¢ÂÂ 31 days</div>
-        <div style="position:relative;height:185px;">
-          <canvas id="gscChart" width="714" height="370" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ SHOPIFY KPIs Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="section-label">E-commerce &nbsp;ÃÂ·&nbsp; Shopify</div>
-    <div class="kpi-grid g3">
-      <div class="kpi"><div class="k-label">Revenue</div><div class="k-value">$406.25</div><div class="k-sub">First month of live orders</div></div>
-      <div class="kpi"><div class="k-label">Orders Placed</div><div class="k-value">1</div><div class="k-sub">Avg. order value: $406.25</div></div>
-      <div class="kpi"><div class="k-label">Add-to-Cart Events</div><div class="k-value">98</div><div class="k-sub">1 purchase completed</div></div>
-    </div>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ FUNNEL Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="chart-card" style="margin-bottom:24px;">
-      <div class="chart-title">Conversion Pipeline</div>
-      <div class="chart-sub">Sessions Ã¢ÂÂ Add-to-Cart Ã¢ÂÂ Completed Order Ã¢ÂÂ full month</div>
-      <div class="funnel">
-        <div class="funnel-step">
-          <div class="funnel-label">Sessions</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar-fill" style="width:100%;background:#2563eb;"><span>528</span></div>
-          </div>
-          <div class="funnel-pct">100%</div>
-        </div>
-        <div class="funnel-step">
-          <div class="funnel-label">Add to Cart</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar-fill" style="width:18.6%;background:#7c3aed;min-width:36px;"><span>98</span></div>
-          </div>
-          <div class="funnel-pct">18.6%</div>
-        </div>
-        <div class="funnel-step">
-          <div class="funnel-label">Purchased</div>
-          <div class="funnel-bar-wrap">
-            <div class="funnel-bar-fill" style="width:0.9%;background:#22a06b;min-width:28px;"><span>1</span></div>
-          </div>
-          <div class="funnel-pct">0.2%</div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ KLAVIYO EMAIL Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="section-label">Email Marketing &nbsp;ÃÂ·&nbsp; Klaviyo</div>
-    <div class="kpi-grid g4" style="margin-bottom:14px;">
-      <div class="kpi" style="border-style:dashed;">
-        <div class="k-label">List Size</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
-        <div class="k-sub">Pending connection</div>
-      </div>
-      <div class="kpi" style="border-style:dashed;">
-        <div class="k-label">Avg Open Rate</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
-        <div class="k-sub">Pending connection</div>
-      </div>
-      <div class="kpi" style="border-style:dashed;">
-        <div class="k-label">Avg Click Rate</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
-        <div class="k-sub">Pending connection</div>
-      </div>
-      <div class="kpi" style="border-style:dashed;">
-        <div class="k-label">Revenue Attributed</div>
-        <div class="k-value" style="font-size:16px;color:#bbb;">Ã¢ÂÂ</div>
-        <div class="k-sub">Pending connection</div>
-      </div>
-    </div>
-    <div class="data-note" style="margin-bottom:28px;">
-      <strong>Klaviyo connection in progress.</strong> Once connected via the Monday scheduled task, this section will automatically populate with list size, campaign open/click rates, flow performance, and email-attributed revenue for the selected week. &nbsp;<a href="https://app.klaviyo.com/" target="_blank" style="color:#92400e;font-weight:600;">Open Klaviyo Ã¢ÂÂ</a>
-    </div>
-
-    <!-- Ã¢ÂÂÃ¢ÂÂ DATA NOTE Ã¢ÂÂÃ¢ÂÂ -->
-    <div class="data-note">
-      Note: GA4 daily data prior to Mar 22 is estimated from weekly aggregates. GSC daily data covers Mar 4Ã¢ÂÂ30. Shopify e-commerce figures reflect full-month totals regardless of date range. For live auto-updating data, connect via the GA4, Search Console, and Shopify APIs.
-    </div>
-
-
-
-    <!-- ââ GA4 GEOGRAPHIC DATA ââ -->
-    <div class="section-label">Visitor Geography &nbsp;&middot;&nbsp; Google Analytics 4 &nbsp;&middot;&nbsp; March 2026</div>
-    <div class="geo-grid">
-      <div class="geo-card">
-        <h4>Top Countries by Active Users</h4>
-        <div class="geo-row"><span class="geo-name">United States</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:100%"></div></div><span class="geo-val">959</span></div>
-        <div class="geo-row"><span class="geo-name">Singapore</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:34.1%"></div></div><span class="geo-val">327</span></div>
-        <div class="geo-row"><span class="geo-name">China</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:32.1%"></div></div><span class="geo-val">308</span></div>
-        <div class="geo-row"><span class="geo-name">Vietnam</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:6.3%"></div></div><span class="geo-val">60</span></div>
-        <div class="geo-row"><span class="geo-name">India</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:4.2%"></div></div><span class="geo-val">40</span></div>
-        <div class="geo-row"><span class="geo-name">France</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:2.9%"></div></div><span class="geo-val">28</span></div>
-        <div class="geo-row"><span class="geo-name">Brazil</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:2.6%"></div></div><span class="geo-val">25</span></div>
-        <div class="geo-row"><span class="geo-name">United Kingdom</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:2.6%"></div></div><span class="geo-val">25</span></div>
-        <div class="geo-row"><span class="geo-name">Germany</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:2.4%"></div></div><span class="geo-val">23</span></div>
-        <div class="geo-row"><span class="geo-name">Netherlands</span><div class="geo-bar-wrap"><div class="geo-bar intl" style="width:2.1%"></div></div><span class="geo-val">20</span></div>
-        <div style="font-size:11px;color:#aaa;margin-top:8px;">93 countries total &middot; US accounts for 46% of active users &middot; $5,525 total revenue (US-only)</div>
-      </div>
-      <div class="geo-card">
-        <h4>Top US States by Active Users</h4>
-        <div class="geo-row"><span class="geo-name">California</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:100%"></div></div><span class="geo-val">189</span></div>
-        <div class="geo-row"><span class="geo-name">Texas</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:38.1%"></div></div><span class="geo-val">72</span></div>
-        <div class="geo-row"><span class="geo-name">Florida</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:32.3%"></div></div><span class="geo-val">61</span></div>
-        <div class="geo-row"><span class="geo-name">New York</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:29.1%"></div></div><span class="geo-val">55</span></div>
-        <div class="geo-row"><span class="geo-name">Georgia</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:22.2%"></div></div><span class="geo-val">42</span></div>
-        <div class="geo-row"><span class="geo-name">Virginia</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:19.6%"></div></div><span class="geo-val">37</span></div>
-        <div class="geo-row"><span class="geo-name">Ohio</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:16.9%"></div></div><span class="geo-val">32</span></div>
-        <div class="geo-row"><span class="geo-name">Oregon</span><div class="geo-bar-wrap"><div class="geo-bar us" style="width:15.9%"></div></div><span class="geo-val">30</span></div>
-        <div style="font-size:11px;color:#aaa;margin-top:8px;">California leads with $5,144 revenue (93.1% of total) &middot; 350 regions tracked</div>
-      </div>
-    </div>
-
-    <!-- ââ HOTJAR BEHAVIORAL ANALYTICS ââ -->
-    <div class="section-label">Behavioral Analytics &nbsp;&middot;&nbsp; Hotjar &nbsp;&middot;&nbsp; Last 30 Days</div>
-    <div class="hj-kpi-grid">
-      <div class="hj-kpi"><div class="k-label">Sessions</div><div class="k-value">456</div><div class="k-sub">35% sampled</div></div>
-      <div class="hj-kpi"><div class="k-label">Avg Duration</div><div class="k-value">8:48</div><div class="k-sub">per session</div></div>
-      <div class="hj-kpi"><div class="k-label">Pages / Session</div><div class="k-value">6.8</div><div class="k-sub">average</div></div>
-      <div class="hj-kpi"><div class="k-label">Bounce Rate</div><div class="k-value">25.2%</div><div class="k-sub">all sessions</div></div>
-    </div>
-    <div class="geo-grid">
-      <div class="geo-card">
-        <h4>Top Pages (by sessions)</h4>
-        <div class="geo-row"><span class="geo-name">Homepage</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:100%"></div></div><span class="geo-val">176</span></div>
-        <div class="geo-row"><span class="geo-name">/collections/new-arrivals</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:51.1%"></div></div><span class="geo-val">90</span></div>
-        <div class="geo-row"><span class="geo-name">/collections/new-arrivals (alt)</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:40.9%"></div></div><span class="geo-val">72</span></div>
-        <div class="geo-row"><span class="geo-name">/collections/best-sellers</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:26.7%"></div></div><span class="geo-val">47</span></div>
-        <div class="geo-row"><span class="geo-name">/account/register</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:23.9%"></div></div><span class="geo-val">42</span></div>
-      </div>
-      <div class="geo-card">
-        <h4>Top Traffic Channels (referrer)</h4>
-        <div class="geo-row"><span class="geo-name">google.com</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:100%"></div></div><span class="geo-val">118</span></div>
-        <div class="geo-row"><span class="geo-name">trendnotes.com/new-arrivals</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:9.3%"></div></div><span class="geo-val">11</span></div>
-        <div class="geo-row"><span class="geo-name">admin.shopify.com</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:9.3%"></div></div><span class="geo-val">11</span></div>
-        <div class="geo-row"><span class="geo-name">trendnotes.com (direct)</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:8.5%"></div></div><span class="geo-val">10</span></div>
-        <div style="font-size:11px;color:#aaa;margin-top:4px;">164 sessions with no referrer &middot; 142 from other sources</div>
-      </div>
-    </div>
-    <div class="geo-grid">
-      <div class="geo-card">
-        <h4>Pages with Issues (rage clicks)</h4>
-        <div style="margin-top:4px;">
-          <span class="issue-tag">wildflower-patched-camo-tee</span>
-          <span class="issue-tag">weekend-flex-lounge-set</span>
-          <span class="issue-tag">boho-elastic-waist-pants</span>
-          <span class="issue-tag">drape-top (variant)</span>
-          <span class="issue-tag">lounge-set (variant)</span>
-        </div>
-        <div style="font-size:11px;color:#aaa;margin-top:8px;">6 rage clicks &middot; 60 u-turns detected across all pages</div>
-      </div>
-      <div class="geo-card">
-        <h4>Hotjar Top Countries</h4>
-        <div class="geo-row"><span class="geo-name">United States</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:100%"></div></div><span class="geo-val">379</span></div>
-        <div class="geo-row"><span class="geo-name">India</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:2.6%"></div></div><span class="geo-val">10</span></div>
-        <div class="geo-row"><span class="geo-name">South Korea</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:2.1%"></div></div><span class="geo-val">8</span></div>
-        <div class="geo-row"><span class="geo-name">Puerto Rico</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:2.1%"></div></div><span class="geo-val">8</span></div>
-        <div class="geo-row"><span class="geo-name">Nigeria</span><div class="geo-bar-wrap"><div class="geo-bar hj" style="width:1.3%"></div></div><span class="geo-val">5</span></div>
-        <div style="font-size:11px;color:#aaa;margin-top:4px;">46 sessions from other countries &middot; US dominates at 83%</div>
-      </div>
-    </div>
-
-  </div><!-- /body -->
-
-  <!-- SOURCE LINKS -->
-  <div class="sources">
-    <span class="sources-label">Sources</span>
-    <a class="src-link" href="https://lookerstudio.google.com/u/1/reporting/8c104555-4336-4f6b-ac0d-818e18210cd0" target="_blank">
-      <span class="src-icon">Ã°ÂÂÂ</span> Looker Studio Dashboard
-    </a>
-    <a class="src-link" href="https://analytics.google.com/" target="_blank">
-      <span class="src-icon">Ã°ÂÂÂ</span> Google Analytics 4
-    </a>
-    <a class="src-link" href="https://search.google.com/search-console/" target="_blank">
-      <span class="src-icon">Ã°ÂÂÂ</span> Search Console
-    </a>
-    <a class="src-link" href="https://docs.google.com/spreadsheets/d/1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4" target="_blank">
-      <span class="src-icon">Ã°ÂÂÂ</span> Shopify Data Sheet
-    </a>
-    <a class="src-link" href="https://app.klaviyo.com/" target="_blank">
-      <span class="src-icon">Ã¢ÂÂÃ¯Â¸Â</span> Klaviyo
-    </a>
-    <a class="src-link" href="https://insights.hotjar.com/sites/6507654/dashboard" target="_blank">
-      <span class="src-icon">Ã°ÂÂÂ¥</span> Hotjar Heatmaps
-    </a>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="brand">Trend Notes &nbsp;ÃÂ·&nbsp; Performance Report</div>
-    <div class="note">Data: Google Analytics 4 ÃÂ· Google Search Console ÃÂ· Shopify</div>
-  </div>
-
-</div>
-
-<script>
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-// DAILY DATA (GA4 & GSC) Ã¢ÂÂ March 2026
-// GA4: daily actuals Mar 22-31; earlier days
-//      are weekly averages distributed evenly.
-// GSC: daily actuals Mar 4-30 from dashboard.
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-
-const dailyData = [
-  // Mar 1Ã¢ÂÂ8 (GA4 from week avg: 341s/521v ÃÂ· 7 Ã¢ÂÂ 49/74 per day; GSC Mar 1-3 estimated)
-  { d:'2026-03-01', s:47, v:72,  gc:0,  gi:0  },
-  { d:'2026-03-02', s:50, v:76,  gc:0,  gi:0  },
-  { d:'2026-03-03', s:48, v:73,  gc:0,  gi:0  },
-  { d:'2026-03-04', s:51, v:77,  gc:7,  gi:44 },
-  { d:'2026-03-05', s:49, v:74,  gc:9,  gi:52 },
-  { d:'2026-03-06', s:48, v:73,  gc:6,  gi:39 },
-  { d:'2026-03-07', s:49, v:75,  gc:3,  gi:38 },
-  { d:'2026-03-08', s:49, v:74,  gc:3,  gi:35 },
-  // Mar 9Ã¢ÂÂ15 (GA4 week avg: 615s/1231v ÃÂ· 7 Ã¢ÂÂ 88/176)
-  { d:'2026-03-09', s:88, v:175, gc:6,  gi:76 },
-  { d:'2026-03-10', s:90, v:178, gc:12, gi:72 },
-  { d:'2026-03-11', s:87, v:174, gc:5,  gi:99 },
-  { d:'2026-03-12', s:89, v:177, gc:6,  gi:85 },
-  { d:'2026-03-13', s:88, v:176, gc:6,  gi:64 },
-  { d:'2026-03-14', s:87, v:175, gc:5,  gi:67 },
-  { d:'2026-03-15', s:86, v:176, gc:5,  gi:71 },
-  // Mar 16Ã¢ÂÂ21 (GA4 week avg: 408s/920v ÃÂ· 7 Ã¢ÂÂ 58/131)
-  { d:'2026-03-16', s:59, v:132, gc:5,  gi:79 },
-  { d:'2026-03-17', s:57, v:130, gc:3,  gi:51 },
-  { d:'2026-03-18', s:58, v:131, gc:6,  gi:63 },
-  { d:'2026-03-19', s:60, v:134, gc:12, gi:62 },
-  { d:'2026-03-20', s:57, v:130, gc:2,  gi:38 },
-  { d:'2026-03-21', s:58, v:131, gc:3,  gi:40 },
-  // Mar 22Ã¢ÂÂ31 (GA4 daily actuals from dashboard)
-  { d:'2026-03-22', s:46, v:88,  gc:6,  gi:44 },
-  { d:'2026-03-23', s:56, v:120, gc:3,  gi:60 },
-  { d:'2026-03-24', s:55, v:161, gc:7,  gi:74 },
-  { d:'2026-03-25', s:64, v:168, gc:11, gi:84 },
-  { d:'2026-03-26', s:63, v:180, gc:9,  gi:92 },
-  { d:'2026-03-27', s:69, v:132, gc:7,  gi:53 },
-  { d:'2026-03-28', s:79, v:141, gc:5,  gi:61 },
-  { d:'2026-03-29', s:72, v:122, gc:4,  gi:52 },
-  { d:'2026-03-30', s:83, v:170, gc:8,  gi:72 },
-  { d:'2026-03-31', s:97, v:214, gc:0,  gi:0  },
-];
-
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-// CHARTS Ã¢ÂÂ initialise
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-const blue   = '#2563eb';
-const purple = '#7c3aed';
-const green  = '#22a06b';
-const amber  = '#d97706';
-const lgray  = '#e0e0e0';
-
-Chart.defaults.font = { family: 'Inter, sans-serif', size: 11 };
-Chart.defaults.color = '#999';
-
-// Traffic Line Chart
-const trafficCtx = document.getElementById('trafficChart').getContext('2d');
-const trafficChart = new Chart(trafficCtx, {
-  type: 'line',
-  data: { labels: [], datasets: [
-    { label: 'Sessions', data: [], borderColor: blue, backgroundColor: blue+'18',
-      borderWidth: 2, pointRadius: 2, tension: 0.35, fill: true },
-    { label: 'Views',    data: [], borderColor: purple, backgroundColor: purple+'10',
-      borderWidth: 2, pointRadius: 2, tension: 0.35, fill: true },
-  ]},
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } },
-      tooltip: { mode: 'index', intersect: false }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { maxRotation: 0, font: { size: 10 }, maxTicksLimit: 10 } },
-      y: { grid: { color: '#f0f0f0' }, beginAtZero: true, ticks: { font: { size: 10 } } }
-    }
-  }
-});
-
-// Device Donut (static Ã¢ÂÂ cumulative all-time)
-new Chart(document.getElementById('deviceChart').getContext('2d'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Desktop', 'Mobile', 'Tablet'],
-    datasets: [{ data: [1349, 676, 29], backgroundColor: [blue, purple, amber], borderWidth: 0, hoverOffset: 4 }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, cutout: '62%',
-    plugins: {
-      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } },
-      tooltip: { callbacks: { label: ctx => {
-        const tot = ctx.dataset.data.reduce((a,b)=>a+b,0);
-        return ` ${ctx.label}: ${ctx.parsed.toLocaleString()} (${((ctx.parsed/tot)*100).toFixed(1)}%)`;
-      }}}
-    }
-  }
-});
-
-// Top Pages Bar (static)
-new Chart(document.getElementById('pagesChart').getContext('2d'), {
-  type: 'bar',
-  data: {
-    labels: ['/', '/account/login', '/es', '/collections/new-arrivals', '/collections/plus', '/index.php'],
-    datasets: [{ label: 'Views', data: [2803, 334, 139, 78, 68, 68],
-      backgroundColor: [blue, purple, green, amber, '#06b6d4', '#ec4899'],
-      borderRadius: 4, borderWidth: 0 }]
-  },
-  options: {
-    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toLocaleString()} views` }}},
-    scales: {
-      x: { grid: { color: '#f0f0f0' }, beginAtZero: true, ticks: { font: { size: 10 } } },
-      y: { grid: { display: false }, ticks: { font: { size: 10 } } }
-    }
-  }
-});
-
-// GSC Daily Bar (dynamic)
-const gscCtx = document.getElementById('gscChart').getContext('2d');
-const gscChart = new Chart(gscCtx, {
-  type: 'bar',
-  data: { labels: [], datasets: [
-    { label: 'Clicks',      data: [], backgroundColor: blue,  borderRadius: 3, borderWidth: 0 },
-    { label: 'Impressions', data: [], backgroundColor: lgray, borderRadius: 3, borderWidth: 0 },
-  ]},
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } },
-      tooltip: { mode: 'index', intersect: false }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45, maxTicksLimit: 12 } },
-      y: { grid: { color: '#f0f0f0' }, beginAtZero: true, ticks: { font: { size: 10 } } }
-    }
-  }
-});
-
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-// FILTER LOGIC
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-function fmt(dateStr) {
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-function fmtFull(dateStr) {
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-function applyFilter() {
-  const start = document.getElementById('startDate').value;
-  const end   = document.getElementById('endDate').value;
-  if (!start || !end || start > end) return;
-
-  const filtered = dailyData.filter(r => r.d >= start && r.d <= end);
-
-  // Update period label
-  document.getElementById('periodLabel').textContent =
-    `${fmtFull(start)} Ã¢ÂÂ ${fmtFull(end)}`;
-
-  // KPI totals
-  const totSessions = filtered.reduce((a,r) => a + r.s, 0);
-  const totViews    = filtered.reduce((a,r) => a + r.v, 0);
-  const totClicks   = filtered.reduce((a,r) => a + r.gc, 0);
-  const totImpr     = filtered.reduce((a,r) => a + r.gi, 0);
-  const ctr = totImpr > 0 ? ((totClicks / totImpr) * 100).toFixed(1) + '%' : 'Ã¢ÂÂ';
-  const days = filtered.length;
-
-  document.getElementById('kpi-sessions').textContent = totSessions.toLocaleString();
-  document.getElementById('kpi-sessions-sub').textContent = `${days}-day total`;
-  document.getElementById('kpi-views').textContent = totViews.toLocaleString();
-  document.getElementById('kpi-views-sub').textContent = `${days}-day total`;
-  document.getElementById('kpi-clicks').textContent = totClicks.toLocaleString();
-  document.getElementById('kpi-clicks-sub').textContent = `${days}-day total`;
-  document.getElementById('kpi-impr').textContent = totImpr.toLocaleString();
-  document.getElementById('kpi-impr-sub').textContent = `${days}-day total`;
-  document.getElementById('kpi-ctr').textContent = ctr;
-
-  // Traffic chart
-  const labels = filtered.map(r => fmt(r.d));
-  trafficChart.data.labels = labels;
-  trafficChart.data.datasets[0].data = filtered.map(r => r.s);
-  trafficChart.data.datasets[1].data = filtered.map(r => r.v);
-  document.getElementById('trafficChartSub').textContent =
-    `Sessions & views Ã¢ÂÂ ${days <= 7 ? 'daily' : days <= 14 ? 'daily' : 'daily'} (${days} days)`;
-  trafficChart.update();
-
-  // GSC chart
-  gscChart.data.labels = labels;
-  gscChart.data.datasets[0].data = filtered.map(r => r.gc);
-  gscChart.data.datasets[1].data = filtered.map(r => r.gi);
-  document.getElementById('gscChartSub').textContent =
-    `GSC clicks & impressions Ã¢ÂÂ ${days} days`;
-  gscChart.update();
-
-  // Preset button active state
-  document.querySelectorAll('.preset-btn').forEach(btn => {
-    btn.classList.toggle('active',
-      btn.dataset.start === start && btn.dataset.end === end);
-  });
-}
-
-// Wire up inputs
-document.getElementById('startDate').addEventListener('change', applyFilter);
-document.getElementById('endDate').addEventListener('change', applyFilter);
-
-document.querySelectorAll('.preset-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.getElementById('startDate').value = btn.dataset.start;
-    document.getElementById('endDate').value   = btn.dataset.end;
-    applyFilter();
-  });
-});
-
-// Initial render
-applyFilter();
-</script>
-
-
-</body></html>
+Trend Notes
+Performance Report  ·  Live Data
+Updated Apr 7, 4:46 PM
+FROM
+–
+TO
+Last 7 Days
+Last 30 Days
+Last 90 Days
+All Time
+Showing data for January 8, 2026 – April 7, 2026
+KEY HIGHLIGHTS
+REVENUE
+No orders in the selected date range. Try expanding the filter or check Shopify for recent activity.
+
+E-COMMERCE  ·  SHOPIFY
+LIVE
+Revenue
+$0.00
+No orders in period
+Orders
+0
+0 orders
+Avg Order Value
+—
+N/A
+Abandoned Checkouts
+0
+0 abandoned checkouts
+Revenue Over Time
+Daily order revenue
+
+Orders by Shipping Country
+From Shopify order data
+
+Conversion Pipeline
+Customers → Orders → Abandoned
+Customers
+0
+100%
+Ordered
+0
+0.0%
+Abandoned
+0
+0.0%
+Top Customers
+By total spent · from Shopify
+CUSTOMER
+ORDERS
+TOTAL SPENT
+CITY
+COUNTRY
+No customer data available
+Product Catalog
+Active products · from Shopify
+PRODUCT
+TYPE
+VENDOR
+INVENTORY
+STATUS
+No product data available
+
+EMAIL MARKETING  ·  KLAVIYO
+LIVE
+Campaigns
+0
+No campaigns yet
+Avg Open Rate
+—
+Pending
+Avg Click Rate
+—
+Pending
+Revenue Attributed
+—
+Pending
+Recent Campaigns
+From Klaviyo via Google Sheets
+DATE
+CAMPAIGN
+RECIPIENTS
+OPEN RATE
+CLICK RATE
+REVENUE
+No campaigns sent yet. Data will appear here automatically.
+
+SITE TRAFFIC  ·  GOOGLE ANALYTICS 4
+PENDING FEED
+Sessions
+—
+Awaiting GA4 data feed
+Page Views
+—
+Awaiting GA4 data feed
+Active Users
+—
+Awaiting GA4 data feed
+Engagement Rate
+—
+Awaiting GA4 data feed
+Traffic Trend
+Sessions & views
+
+Sessions by Device
+GA4 breakdown
+
+
+SEARCH VISIBILITY  ·  GOOGLE SEARCH CONSOLE
+PENDING FEED
+Clicks
+—
+Awaiting GSC data feed
+Impressions
+—
+Awaiting GSC data feed
+Click-Through Rate
+—
+Awaiting GSC data feed
+Avg Position
+—
+Awaiting GSC data feed
+Daily Search Performance
+Clicks & impressions
+
+Top Landing Pages
+By views
+
+Live data sources: Shopify Orders, Customers, Products, and Abandoned Checkouts are fetched live from Google Sheets on every page load. Klaviyo campaign data updates automatically when new campaigns are sent. 
+Pending feeds: GA4 and GSC sections will go live once their Zapier/Apps Script feeds populate the GA4_Daily and GSC_Daily tabs in the data sheet. No code changes needed — the dashboard will auto-detect them.
+SOURCES
+📊
+Looker Studio
+📈
+Data Sheet
+📊
+Google Analytics 4
+🔎
+Search Console
+✉️
+Klaviyo
+🔥
+Hotjar
+Trend Notes  ·  Performance Report
+Data: Google Sheets (live) · Looker Studio · Zapier
