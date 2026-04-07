@@ -1,145 +1,800 @@
-Trend Notes
-Performance Report  ·  Live Data
-Updated Apr 7, 4:46 PM
-FROM
-–
-TO
-Last 7 Days
-Last 30 Days
-Last 90 Days
-All Time
-Showing data for January 8, 2026 – April 7, 2026
-KEY HIGHLIGHTS
-REVENUE
-No orders in the selected date range. Try expanding the filter or check Shopify for recent activity.
+<!DOCTYPE html>
+<!-- saved from url=(0218)file:///Users/jeany/Library/Application%20Support/Claude/local-agent-mode-sessions/ae30322c-2370-419e-b0b3-95f7d97b0064/06c575a0-8f99-496d-ae5c-217628cb4693/local_360a4ebb-97d3-4ef4-bfb0-9676452b1fd0/outputs/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-E-COMMERCE  ·  SHOPIFY
-LIVE
-Revenue
-$0.00
-No orders in period
-Orders
-0
-0 orders
-Avg Order Value
-—
-N/A
-Abandoned Checkouts
-0
-0 abandoned checkouts
-Revenue Over Time
-Daily order revenue
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trend Notes – Performance Report</title>
+<script src="./Trend Notes – Performance Report_files/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f0efed;color:#1a1a1a;padding:32px 20px}
+.page{max-width:900px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 32px rgba(0,0,0,0.10)}
+/* HEADER */
+.header{background:#111;color:#fff;padding:30px 48px 28px;display:flex;justify-content:space-between;align-items:center}
+.header-left h1{font-size:20px;font-weight:700;letter-spacing:-0.4px}
+.header-left p{font-size:12px;color:#888;margin-top:3px}
+.live-dot{display:inline-block;width:7px;height:7px;background:#22c55e;border-radius:50%;margin-right:5px;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.header-right{font-size:11px;color:#666}
+.header-right .updated-time{color:#aaa}
+/* FILTER BAR */
+.filter-bar{background:#1a1a1a;padding:14px 48px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #2a2a2a;flex-wrap:wrap}
+.filter-bar label{font-size:11px;color:#888;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.filter-bar input[type="date"]{background:#2a2a2a;border:1px solid #3a3a3a;color:#ddd;border-radius:6px;padding:6px 10px;font-size:12px;font-family:'Inter',sans-serif;outline:none;cursor:pointer}
+.filter-bar input[type="date"]:focus{border-color:#555}
+.filter-sep{color:#555;font-size:13px}
+.filter-presets{display:flex;gap:6px;margin-left:auto}
+.preset-btn{background:#2a2a2a;border:1px solid #3a3a3a;color:#aaa;border-radius:5px;padding:5px 10px;font-size:11px;font-family:'Inter',sans-serif;cursor:pointer;transition:all .15s}
+.preset-btn:hover{background:#333;color:#fff;border-color:#555}
+.preset-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+/* PERIOD BADGE */
+.period-badge{padding:10px 48px 0;font-size:11.5px;color:#aaa}
+.period-badge strong{color:#333}
+/* BODY */
+.body{padding:28px 48px 36px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#aaa;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.badge-live{background:#dcfce7;color:#15803d;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.8px}
+.badge-pending{background:#fef3c7;color:#92400e;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.8px}
+/* KPI GRIDS */
+.kpi-grid{display:grid;gap:10px;margin-bottom:24px}
+.kpi-grid.g4{grid-template-columns:repeat(4,1fr)}
+.kpi-grid.g3{grid-template-columns:repeat(3,1fr)}
+.kpi{background:#f8f8f7;border:1px solid #e8e8e8;border-radius:8px;padding:16px 14px;transition:background .2s}
+.kpi .k-label{font-size:10.5px;font-weight:500;color:#999;margin-bottom:7px}
+.kpi .k-value{font-size:24px;font-weight:700;color:#111;letter-spacing:-.8px;line-height:1;margin-bottom:5px}
+.kpi .k-sub{font-size:11px;color:#bbb}
+.kpi.pending{border-style:dashed}
+.kpi.pending .k-value{font-size:16px;color:#bbb}
+/* DIVIDER */
+hr{border:none;border-top:1px solid #eee;margin:24px 0}
+/* CHART CARDS */
+.chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.chart-grid-3{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:24px}
+.chart-card{background:#f8f8f7;border:1px solid #e8e8e8;border-radius:10px;padding:18px}
+.chart-title{font-size:12px;font-weight:600;color:#333;margin-bottom:3px}
+.chart-sub{font-size:10.5px;color:#bbb;margin-bottom:14px}
+canvas{display:block}
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:9px;padding-top:2px}
+.funnel-step{display:flex;align-items:center;gap:10px}
+.funnel-label{font-size:11px;color:#777;min-width:90px;text-align:right}
+.funnel-bar-wrap{flex:1;background:#ebebeb;border-radius:4px;height:26px;overflow:hidden}
+.funnel-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;transition:width .4s ease}
+.funnel-bar-fill span{font-size:11px;font-weight:600;color:#fff;white-space:nowrap}
+.funnel-pct{font-size:10.5px;color:#bbb;min-width:40px;text-align:right}
+/* HIGHLIGHTS */
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.hl{border-left:3px solid #ddd;padding:13px 16px;background:#fafafa;border-radius:0 8px 8px 0}
+.hl.green{border-color:#22a06b}
+.hl.blue{border-color:#2563eb}
+.hl.amber{border-color:#d97706}
+.hl .hl-tag{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#bbb;margin-bottom:4px}
+.hl .hl-txt{font-size:12.5px;line-height:1.55;color:#444}
+.hl strong{color:#111}
+/* FOCUS */
+.focus{background:#f8f8f7;border:1px solid #e8e8e8;border-radius:10px;padding:20px 24px;margin-bottom:24px}
+.focus h3{font-size:13px;font-weight:700;color:#111;margin-bottom:12px}
+.focus ol{padding-left:18px}
+.focus li{font-size:12.5px;color:#444;line-height:1.55;margin-bottom:8px}
+.focus li strong{color:#111}
+/* DATA NOTE */
+.data-note{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;margin-bottom:24px;font-size:11.5px;color:#92400e;line-height:1.5}
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
+.data-table th{text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#999;padding:8px 10px;border-bottom:2px solid #eee}
+.data-table td{padding:8px 10px;border-bottom:1px solid #f0f0f0;color:#444}
+.data-table tr:hover td{background:#f8f8f7}
+/* GEO */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.geo-card{background:#fafaf8;border-radius:10px;padding:16px}
+.geo-card h4{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#888;margin:0 0 12px}
+.geo-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.geo-bar-wrap{flex:1;height:6px;background:#eee;border-radius:3px}
+.geo-bar{height:100%;border-radius:3px}
+.geo-bar.blue{background:#4a7cff}
+.geo-bar.purple{background:#7c3aed}
+.geo-bar.green{background:#22a06b}
+.geo-name{min-width:100px;color:#333}
+.geo-val{min-width:50px;text-align:right;font-weight:600;color:#555;font-size:12px}
+/* SOURCES */
+.sources{border-top:1px solid #eee;padding:16px 48px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fafafa}
+.sources-label{font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#bbb;margin-right:4px}
+.src-link{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #e4e4e4;border-radius:5px;padding:5px 10px;font-size:11.5px;font-weight:500;color:#444;text-decoration:none;transition:all .15s}
+.src-link:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.src-link .src-icon{font-size:13px;line-height:1}
+/* FOOTER */
+.footer{border-top:1px solid #eee;padding:14px 48px;display:flex;justify-content:space-between;align-items:center}
+.footer .brand{font-size:11.5px;font-weight:600;color:#aaa}
+.footer .note{font-size:10.5px;color:#ccc}
+/* LOADING */
+.loading-spinner{display:inline-block;width:14px;height:14px;border:2px solid #e0e0e0;border-top-color:#2563eb;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media print{body{background:white;padding:0}.page{box-shadow:none;border-radius:0;max-width:100%}.filter-bar{display:none}}
+@media(max-width:700px){.kpi-grid.g4,.kpi-grid.g3{grid-template-columns:repeat(2,1fr)}.chart-grid-2,.chart-grid-3,.geo-grid,.highlights{grid-template-columns:1fr}.header,.filter-bar,.body,.sources,.footer{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="page">
 
-Orders by Shipping Country
-From Shopify order data
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>Trend Notes</h1>
+    <p>Performance Report &nbsp;·&nbsp; <span class="live-dot"></span>Live Data</p>
+  </div>
+  <div class="header-right">
+    <span class="updated-time" id="lastUpdated">Updated Apr 7, 4:46 PM</span>
+  </div>
+</div>
 
-Conversion Pipeline
-Customers → Orders → Abandoned
-Customers
-0
-100%
-Ordered
-0
-0.0%
-Abandoned
-0
-0.0%
-Top Customers
-By total spent · from Shopify
-CUSTOMER
-ORDERS
-TOTAL SPENT
-CITY
-COUNTRY
-No customer data available
-Product Catalog
-Active products · from Shopify
-PRODUCT
-TYPE
-VENDOR
-INVENTORY
-STATUS
-No product data available
+<!-- DATE FILTER BAR -->
+<div class="filter-bar">
+  <label>From</label>
+  <input type="date" id="startDate">
+  <span class="filter-sep">–</span>
+  <label>To</label>
+  <input type="date" id="endDate">
+  <div class="filter-presets">
+    <button class="preset-btn" data-range="7">Last 7 Days</button>
+    <button class="preset-btn" data-range="30">Last 30 Days</button>
+    <button class="preset-btn active" data-range="90">Last 90 Days</button>
+    <button class="preset-btn" data-range="all">All Time</button>
+  </div>
+</div>
 
-EMAIL MARKETING  ·  KLAVIYO
-LIVE
-Campaigns
-0
-No campaigns yet
-Avg Open Rate
-—
-Pending
-Avg Click Rate
-—
-Pending
-Revenue Attributed
-—
-Pending
-Recent Campaigns
-From Klaviyo via Google Sheets
-DATE
-CAMPAIGN
-RECIPIENTS
-OPEN RATE
-CLICK RATE
-REVENUE
-No campaigns sent yet. Data will appear here automatically.
+<!-- PERIOD BADGE -->
+<div class="period-badge">
+  Showing data for <strong id="periodLabel">January 8, 2026 – April 7, 2026</strong>
+</div>
 
-SITE TRAFFIC  ·  GOOGLE ANALYTICS 4
-PENDING FEED
-Sessions
-—
-Awaiting GA4 data feed
-Page Views
-—
-Awaiting GA4 data feed
-Active Users
-—
-Awaiting GA4 data feed
-Engagement Rate
-—
-Awaiting GA4 data feed
-Traffic Trend
-Sessions & views
+<!-- BODY -->
+<div class="body">
 
-Sessions by Device
-GA4 breakdown
+  <!-- HIGHLIGHTS (dynamically populated) -->
+  <div class="section-label">Key Highlights</div>
+  <div class="highlights" id="highlights-container"><div class="hl amber"><div class="hl-tag">Revenue</div><div class="hl-txt">No orders in the selected date range. Try expanding the filter or check Shopify for recent activity.</div></div></div>
+
+  <hr>
+
+  <!-- SHOPIFY E-COMMERCE (LIVE) -->
+  <div class="section-label">E-commerce &nbsp;·&nbsp; Shopify <span class="badge-live">LIVE</span></div>
+  <div class="kpi-grid g4" id="shopify-kpis">
+    <div class="kpi"><div class="k-label">Revenue</div><div class="k-value" id="kpi-revenue">$0.00</div><div class="k-sub" id="kpi-revenue-sub">No orders in period</div></div>
+    <div class="kpi"><div class="k-label">Orders</div><div class="k-value" id="kpi-orders">0</div><div class="k-sub" id="kpi-orders-sub">0 orders</div></div>
+    <div class="kpi"><div class="k-label">Avg Order Value</div><div class="k-value" id="kpi-aov">—</div><div class="k-sub" id="kpi-aov-sub">N/A</div></div>
+    <div class="kpi"><div class="k-label">Abandoned Checkouts</div><div class="k-value" id="kpi-abandoned">0</div><div class="k-sub" id="kpi-abandoned-sub">0 abandoned checkouts</div></div>
+  </div>
+
+  <!-- Revenue Trend + Orders by Source -->
+  <div class="chart-grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Revenue Over Time</div>
+      <div class="chart-sub" id="revChartSub">Daily order revenue</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="revenueChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Orders by Shipping Country</div>
+      <div class="chart-sub">From Shopify order data</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="countryChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conversion Pipeline -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">Conversion Pipeline</div>
+    <div class="chart-sub">Customers → Orders → Abandoned</div>
+    <div class="funnel" id="funnel-container">
+      <div class="funnel-step"><div class="funnel-label">Customers</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-customers" style="width:100%;background:#2563eb;"><span>0</span></div></div><div class="funnel-pct">100%</div></div>
+      <div class="funnel-step"><div class="funnel-label">Ordered</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-ordered" style="width: 3%; background: rgb(124, 58, 237); min-width: 36px;"><span>0</span></div></div><div class="funnel-pct" id="funnel-ordered-pct">0.0%</div></div>
+      <div class="funnel-step"><div class="funnel-label">Abandoned</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-abandoned" style="width: 3%; background: rgb(217, 119, 6); min-width: 28px;"><span>0</span></div></div><div class="funnel-pct" id="funnel-abandoned-pct">0.0%</div></div>
+    </div>
+  </div>
+
+  <!-- Top Customers Table -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">Top Customers</div>
+    <div class="chart-sub">By total spent · from Shopify</div>
+    <table class="data-table" id="customers-table">
+      <thead><tr><th>Customer</th><th>Orders</th><th>Total Spent</th><th>City</th><th>Country</th></tr></thead>
+      <tbody id="customers-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No customer data available</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- Top Products Table -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">Product Catalog</div>
+    <div class="chart-sub">Active products · from Shopify</div>
+    <table class="data-table" id="products-table">
+      <thead><tr><th>Product</th><th>Type</th><th>Vendor</th><th>Inventory</th><th>Status</th></tr></thead>
+      <tbody id="products-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No product data available</td></tr></tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- KLAVIYO EMAIL (LIVE) -->
+  <div class="section-label">Email Marketing &nbsp;·&nbsp; Klaviyo <span class="badge-live">LIVE</span></div>
+  <div class="kpi-grid g4" id="klaviyo-kpis">
+    <div class="kpi"><div class="k-label">Campaigns</div><div class="k-value" id="kpi-campaigns">0</div><div class="k-sub" id="kpi-campaigns-sub">No campaigns yet</div></div>
+    <div class="kpi"><div class="k-label">Avg Open Rate</div><div class="k-value" id="kpi-openrate">—</div><div class="k-sub" id="kpi-openrate-sub">Pending</div></div>
+    <div class="kpi"><div class="k-label">Avg Click Rate</div><div class="k-value" id="kpi-clickrate">—</div><div class="k-sub" id="kpi-clickrate-sub">Pending</div></div>
+    <div class="kpi"><div class="k-label">Revenue Attributed</div><div class="k-value" id="kpi-emailrev">—</div><div class="k-sub" id="kpi-emailrev-sub">Pending</div></div>
+  </div>
+
+  <!-- Klaviyo Campaign Table -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">Recent Campaigns</div>
+    <div class="chart-sub">From Klaviyo via Google Sheets</div>
+    <table class="data-table">
+      <thead><tr><th>Date</th><th>Campaign</th><th>Recipients</th><th>Open Rate</th><th>Click Rate</th><th>Revenue</th></tr></thead>
+      <tbody id="klaviyo-tbody"><tr><td colspan="6" style="text-align:center;color:#bbb;padding:20px;">No campaigns sent yet. Data will appear here automatically.</td></tr></tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- GA4 SITE TRAFFIC (PENDING FEED) -->
+  <div class="section-label">Site Traffic &nbsp;·&nbsp; Google Analytics 4 <span class="badge-pending" id="ga4-badge">PENDING FEED</span></div>
+  <div class="kpi-grid g4" id="ga4-kpis">
+    <div class="kpi pending"><div class="k-label">Sessions</div><div class="k-value" id="kpi-sessions">—</div><div class="k-sub" id="kpi-sessions-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Page Views</div><div class="k-value" id="kpi-views">—</div><div class="k-sub" id="kpi-views-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Active Users</div><div class="k-value" id="kpi-users">—</div><div class="k-sub" id="kpi-users-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Engagement Rate</div><div class="k-value" id="kpi-engagement">—</div><div class="k-sub" id="kpi-engagement-sub">Awaiting GA4 data feed</div></div>
+  </div>
+
+  <div class="chart-grid-3">
+    <div class="chart-card">
+      <div class="chart-title">Traffic Trend</div>
+      <div class="chart-sub" id="trafficChartSub">Sessions &amp; views</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="trafficChart" width="414" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 414px;"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Sessions by Device</div>
+      <div class="chart-sub">GA4 breakdown</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="deviceChart" width="300" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 300px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- GSC SEARCH (PENDING FEED) -->
+  <div class="section-label">Search Visibility &nbsp;·&nbsp; Google Search Console <span class="badge-pending" id="gsc-badge">PENDING FEED</span></div>
+  <div class="kpi-grid g4" id="gsc-kpis">
+    <div class="kpi pending"><div class="k-label">Clicks</div><div class="k-value" id="kpi-clicks">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Impressions</div><div class="k-value" id="kpi-impr">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Click-Through Rate</div><div class="k-value" id="kpi-ctr">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Avg Position</div><div class="k-value" id="kpi-pos">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
+  </div>
+
+  <div class="chart-grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Daily Search Performance</div>
+      <div class="chart-sub" id="gscChartSub">Clicks &amp; impressions</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="gscChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top Landing Pages</div>
+      <div class="chart-sub">By views</div>
+      <div style="position:relative;height:185px;">
+        <canvas id="pagesChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA NOTE -->
+  <div class="data-note">
+    <strong>Live data sources:</strong> Shopify Orders, Customers, Products, and Abandoned Checkouts are fetched live from Google Sheets on every page load. Klaviyo campaign data updates automatically when new campaigns are sent.
+    <br><strong>Pending feeds:</strong> GA4 and GSC sections will go live once their Zapier/Apps Script feeds populate the <code>GA4_Daily</code> and <code>GSC_Daily</code> tabs in the data sheet. No code changes needed — the dashboard will auto-detect them.
+  </div>
+
+</div>
+
+<!-- SOURCE LINKS -->
+<div class="sources">
+  <span class="sources-label">Sources</span>
+  <a class="src-link" href="https://lookerstudio.google.com/u/1/reporting/96cbc8e5-8ba5-4880-9fdd-ba84d90374a0" target="_blank"><span class="src-icon">📊</span> Looker Studio</a>
+  <a class="src-link" href="https://docs.google.com/spreadsheets/d/1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4" target="_blank"><span class="src-icon">📈</span> Data Sheet</a>
+  <a class="src-link" href="https://analytics.google.com/" target="_blank"><span class="src-icon">📊</span> Google Analytics 4</a>
+  <a class="src-link" href="https://search.google.com/search-console/" target="_blank"><span class="src-icon">🔎</span> Search Console</a>
+  <a class="src-link" href="https://app.klaviyo.com/" target="_blank"><span class="src-icon">✉️</span> Klaviyo</a>
+  <a class="src-link" href="https://insights.hotjar.com/sites/6507654/dashboard" target="_blank"><span class="src-icon">🔥</span> Hotjar</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">Trend Notes &nbsp;·&nbsp; Performance Report</div>
+  <div class="note">Data: Google Sheets (live) · Looker Studio · Zapier</div>
+</div>
+
+</div>
+
+<script>
+// =====================================================
+// CONFIG
+// =====================================================
+const SHEET_ID = '1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4';
+const SHEETS = {
+  orders:     'Shopify Orders',
+  klaviyo:    'Klaviyo',
+  customers:  'Shopify Customers',
+  abandoned:  'Shopify Abandoned Checkouts',
+  products:   'Shopify Products',
+  ga4:        'GA4_Daily',
+  gsc:        'GSC_Daily'
+};
+
+// =====================================================
+// CSV FETCHER & PARSER
+// =====================================================
+function sheetURL(sheetName) {
+  return 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(sheetName);
+}
+
+function parseCSV(text) {
+  var rows = [];
+  var lines = text.split('\n');
+  for (var li = 0; li < lines.length; li++) {
+    var line = lines[li];
+    if (!line.trim()) continue;
+    var row = [];
+    var inQuotes = false, cell = '';
+    for (var i = 0; i < line.length; i++) {
+      var ch = line[i];
+      if (ch === '"') {
+        if (inQuotes && line[i+1] === '"') { cell += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+      } else if (ch === ',' && !inQuotes) {
+        row.push(cell.trim()); cell = '';
+      } else {
+        cell += ch;
+      }
+    }
+    row.push(cell.trim());
+    rows.push(row);
+  }
+  if (rows.length < 2) return [];
+  var headers = rows[0];
+  return rows.slice(1).map(function(r) {
+    var obj = {};
+    headers.forEach(function(h, i) { obj[h] = r[i] || ''; });
+    return obj;
+  });
+}
+
+async function fetchSheet(name) {
+  try {
+    var resp = await fetch(sheetURL(name));
+    if (!resp.ok) return null;
+    var text = await resp.text();
+    if (text.includes('error') && text.includes('Invalid')) return null;
+    return parseCSV(text);
+  } catch(e) { return null; }
+}
+
+// =====================================================
+// CHART SETUP
+// =====================================================
+var blue = '#2563eb', purple = '#7c3aed', green = '#22a06b', amber = '#d97706', lgray = '#e0e0e0';
+Chart.defaults.font = { family: 'Inter, sans-serif', size: 11 };
+Chart.defaults.color = '#999';
+
+var revenueChart = new Chart(document.getElementById('revenueChart').getContext('2d'), {
+  type: 'bar',
+  data: { labels: [], datasets: [{ label: 'Revenue ($)', data: [], backgroundColor: blue, borderRadius: 4 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 9 } } },
+              y: { grid: { color: '#f0f0f0' }, beginAtZero: true, ticks: { callback: function(v){ return '$'+v; } } } } }
+});
+
+var countryChart = new Chart(document.getElementById('countryChart').getContext('2d'), {
+  type: 'doughnut',
+  data: { labels: ['Loading...'], datasets: [{ data: [1], backgroundColor: [lgray], borderWidth: 0 }] },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } } } }
+});
+
+var trafficChart = new Chart(document.getElementById('trafficChart').getContext('2d'), {
+  type: 'line',
+  data: { labels: [], datasets: [
+    { label: 'Sessions', data: [], borderColor: blue, backgroundColor: blue+'18', borderWidth: 2, pointRadius: 2, tension: .35, fill: true },
+    { label: 'Views', data: [], borderColor: purple, backgroundColor: purple+'10', borderWidth: 2, pointRadius: 2, tension: .35, fill: true }
+  ]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } }, tooltip: { mode: 'index', intersect: false } },
+    scales: { x: { grid: { display: false }, ticks: { maxRotation: 0, font: { size: 10 }, maxTicksLimit: 10 } },
+              y: { grid: { color: '#f0f0f0' }, beginAtZero: true } } }
+});
+
+var deviceChart = new Chart(document.getElementById('deviceChart').getContext('2d'), {
+  type: 'doughnut',
+  data: { labels: ['Awaiting data'], datasets: [{ data: [1], backgroundColor: [lgray], borderWidth: 0 }] },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } } } }
+});
+
+var gscChart = new Chart(document.getElementById('gscChart').getContext('2d'), {
+  type: 'bar',
+  data: { labels: [], datasets: [
+    { label: 'Clicks', data: [], backgroundColor: blue, borderRadius: 3 },
+    { label: 'Impressions', data: [], backgroundColor: lgray, borderRadius: 3 }
+  ]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10 } } },
+    scales: { x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45 } },
+              y: { grid: { color: '#f0f0f0' }, beginAtZero: true } } }
+});
+
+var pagesChart = new Chart(document.getElementById('pagesChart').getContext('2d'), {
+  type: 'bar',
+  data: { labels: ['Awaiting data'], datasets: [{ label: 'Views', data: [0], backgroundColor: [lgray], borderRadius: 4 }] },
+  options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { color: '#f0f0f0' }, beginAtZero: true }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } } }
+});
+
+// =====================================================
+// DATE HELPERS
+// =====================================================
+function fmtFull(d) { return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+function fmtShort(d) { return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''; }
+function toDate(str) {
+  if (!str) return null;
+  var d = new Date(str.replace(' ', 'T'));
+  return isNaN(d.getTime()) ? null : d;
+}
+
+// =====================================================
+// MAIN DATA LOAD
+// =====================================================
+var allOrders = [], allCustomers = [], allAbandoned = [], allProducts = [], allKlaviyo = [];
+var allGA4 = [], allGSC = [];
+
+async function loadAllData() {
+  document.getElementById('lastUpdated').textContent = 'Fetching data...';
+
+  var results = await Promise.all([
+    fetchSheet(SHEETS.orders),
+    fetchSheet(SHEETS.customers),
+    fetchSheet(SHEETS.abandoned),
+    fetchSheet(SHEETS.products),
+    fetchSheet(SHEETS.klaviyo),
+    fetchSheet(SHEETS.ga4),
+    fetchSheet(SHEETS.gsc)
+  ]);
+
+  allOrders = results[0] || [];
+  allCustomers = results[1] || [];
+  allAbandoned = results[2] || [];
+  allProducts = results[3] || [];
+  allKlaviyo = results[4] || [];
+  allGA4 = results[5] || [];
+  allGSC = results[6] || [];
+
+  setupDateRange();
+  applyFilter();
+
+  var now = new Date();
+  document.getElementById('lastUpdated').textContent = 'Updated ' + now.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+}
+
+function setupDateRange() {
+  var today = new Date();
+  var start90 = new Date(today);
+  start90.setDate(start90.getDate() - 90);
+  document.getElementById('startDate').value = start90.toISOString().split('T')[0];
+  document.getElementById('endDate').value = today.toISOString().split('T')[0];
+}
+
+// =====================================================
+// FILTER & RENDER
+// =====================================================
+function applyFilter() {
+  var startStr = document.getElementById('startDate').value;
+  var endStr = document.getElementById('endDate').value;
+  if (!startStr || !endStr) return;
+
+  var startD = new Date(startStr + 'T00:00:00');
+  var endD = new Date(endStr + 'T23:59:59');
+
+  document.getElementById('periodLabel').textContent = fmtFull(startD) + ' \u2013 ' + fmtFull(endD);
+
+  var filteredOrders = allOrders.filter(function(o) {
+    var d = toDate(o['Created At']); return d && d >= startD && d <= endD;
+  });
+  var filteredAbandoned = allAbandoned.filter(function(o) {
+    var d = toDate(o['Created At']); return d && d >= startD && d <= endD;
+  });
+  var filteredKlaviyo = allKlaviyo.filter(function(o) {
+    var d = toDate(o['Date']); return d ? (d >= startD && d <= endD) : true;
+  });
+  var filteredGA4 = allGA4.filter(function(o) {
+    var d = toDate(o['Date']); return d && d >= startD && d <= endD;
+  });
+  var filteredGSC = allGSC.filter(function(o) {
+    var d = toDate(o['Date']); return d && d >= startD && d <= endD;
+  });
+
+  renderShopify(filteredOrders, filteredAbandoned);
+  renderCustomers();
+  renderProducts();
+  renderKlaviyo(filteredKlaviyo);
+  renderGA4(filteredGA4);
+  renderGSC(filteredGSC);
+  renderHighlights(filteredOrders, filteredAbandoned);
+}
+
+// =====================================================
+// RENDER: SHOPIFY
+// =====================================================
+function renderShopify(orders, abandoned) {
+  var totalRevenue = orders.reduce(function(s, o) { return s + parseFloat(o['Total Price'] || 0); }, 0);
+  var totalOrders = orders.length;
+  var aov = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+  var totalAbandoned = abandoned.length;
+
+  document.getElementById('kpi-revenue').textContent = '$' + totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  document.getElementById('kpi-revenue-sub').textContent = totalOrders > 0 ? 'Period total' : 'No orders in period';
+  document.getElementById('kpi-orders').textContent = totalOrders.toLocaleString();
+  document.getElementById('kpi-orders-sub').textContent = totalOrders === 1 ? '1 order' : totalOrders + ' orders';
+  document.getElementById('kpi-aov').textContent = aov > 0 ? '$' + aov.toFixed(2) : '\u2014';
+  document.getElementById('kpi-aov-sub').textContent = aov > 0 ? 'Average order value' : 'N/A';
+  document.getElementById('kpi-abandoned').textContent = totalAbandoned.toLocaleString();
+  document.getElementById('kpi-abandoned-sub').textContent = totalAbandoned === 1 ? '1 abandoned checkout' : totalAbandoned + ' abandoned checkouts';
+
+  // Revenue chart
+  var revenueByDate = {};
+  orders.forEach(function(o) {
+    var d = toDate(o['Created At']);
+    if (d) { var key = d.toISOString().split('T')[0]; revenueByDate[key] = (revenueByDate[key] || 0) + parseFloat(o['Total Price'] || 0); }
+  });
+  var sortedDates = Object.keys(revenueByDate).sort();
+  revenueChart.data.labels = sortedDates.map(function(d) { return fmtShort(new Date(d + 'T00:00:00')); });
+  revenueChart.data.datasets[0].data = sortedDates.map(function(d) { return revenueByDate[d]; });
+  if (sortedDates.length === 0) { revenueChart.data.labels = ['No data']; revenueChart.data.datasets[0].data = [0]; }
+  revenueChart.update();
+
+  // Country donut
+  var byCountry = {};
+  orders.forEach(function(o) { var c = o['Shipping Country'] || 'Unknown'; byCountry[c] = (byCountry[c] || 0) + 1; });
+  var countries = Object.entries(byCountry).sort(function(a, b) { return b[1] - a[1]; });
+  if (countries.length > 0) {
+    var colors = [blue, purple, green, amber, '#06b6d4', '#ec4899'];
+    countryChart.data.labels = countries.map(function(c) { return c[0]; });
+    countryChart.data.datasets[0].data = countries.map(function(c) { return c[1]; });
+    countryChart.data.datasets[0].backgroundColor = countries.map(function(_, i) { return colors[i % colors.length]; });
+  } else {
+    countryChart.data.labels = ['No orders']; countryChart.data.datasets[0].data = [1]; countryChart.data.datasets[0].backgroundColor = [lgray];
+  }
+  countryChart.update();
+
+  // Funnel
+  var custCount = allCustomers.length;
+  var orderedPct = custCount > 0 ? (totalOrders / custCount * 100) : 0;
+  var abandonedPct = custCount > 0 ? (totalAbandoned / custCount * 100) : 0;
+  document.getElementById('funnel-customers').querySelector('span').textContent = custCount;
+  document.getElementById('funnel-ordered').style.width = Math.max(orderedPct, 3) + '%';
+  document.getElementById('funnel-ordered').querySelector('span').textContent = totalOrders;
+  document.getElementById('funnel-ordered-pct').textContent = orderedPct.toFixed(1) + '%';
+  document.getElementById('funnel-abandoned').style.width = Math.max(abandonedPct, 3) + '%';
+  document.getElementById('funnel-abandoned').querySelector('span').textContent = totalAbandoned;
+  document.getElementById('funnel-abandoned-pct').textContent = abandonedPct.toFixed(1) + '%';
+}
+
+// =====================================================
+// RENDER: CUSTOMERS TABLE
+// =====================================================
+function renderCustomers() {
+  var tbody = document.getElementById('customers-tbody');
+  if (allCustomers.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No customer data available</td></tr>'; return; }
+  var sorted = allCustomers.slice().sort(function(a, b) { return parseFloat(b['Total Spent'] || 0) - parseFloat(a['Total Spent'] || 0); });
+  tbody.innerHTML = sorted.slice(0, 10).map(function(c) {
+    return '<tr><td><strong>' + (c['First Name'] || '') + ' ' + (c['Last Name'] || '') + '</strong></td>' +
+      '<td>' + (c['Orders Count'] || '0') + '</td>' +
+      '<td>$' + parseFloat(c['Total Spent'] || 0).toFixed(2) + '</td>' +
+      '<td>' + (c['City'] || '\u2014') + '</td>' +
+      '<td>' + (c['Country'] || '\u2014') + '</td></tr>';
+  }).join('');
+}
+
+// =====================================================
+// RENDER: PRODUCTS TABLE
+// =====================================================
+function renderProducts() {
+  var tbody = document.getElementById('products-tbody');
+  if (allProducts.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No product data available</td></tr>'; return; }
+  tbody.innerHTML = allProducts.map(function(p) {
+    var status = (p['Status'] || '').toUpperCase();
+    var statusColor = status === 'ACTIVE' ? green : '#999';
+    return '<tr><td><strong>' + (p['Title'] || 'Untitled') + '</strong></td>' +
+      '<td>' + (p['Product Type'] || '\u2014') + '</td>' +
+      '<td>' + (p['Vendor'] || '\u2014') + '</td>' +
+      '<td>' + parseInt(p['Total Inventory'] || 0).toLocaleString() + '</td>' +
+      '<td><span style="color:' + statusColor + ';font-weight:600;font-size:11px;">' + status + '</span></td></tr>';
+  }).join('');
+}
+
+// =====================================================
+// RENDER: KLAVIYO
+// =====================================================
+function renderKlaviyo(rows) {
+  var tbody = document.getElementById('klaviyo-tbody');
+  var validRows = rows.filter(function(r) { return r['Campaign Name'] && r['Campaign Name'].indexOf('No campaigns') === -1; });
+
+  if (validRows.length === 0) {
+    document.getElementById('kpi-campaigns').textContent = '0';
+    document.getElementById('kpi-campaigns-sub').textContent = 'No campaigns yet';
+    document.getElementById('kpi-openrate').textContent = '\u2014';
+    document.getElementById('kpi-openrate-sub').textContent = 'Pending';
+    document.getElementById('kpi-clickrate').textContent = '\u2014';
+    document.getElementById('kpi-clickrate-sub').textContent = 'Pending';
+    document.getElementById('kpi-emailrev').textContent = '\u2014';
+    document.getElementById('kpi-emailrev-sub').textContent = 'Pending';
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#bbb;padding:20px;">No campaigns sent yet. Data will appear here automatically.</td></tr>';
+    return;
+  }
+
+  document.getElementById('kpi-campaigns').textContent = validRows.length;
+  document.getElementById('kpi-campaigns-sub').textContent = 'campaigns sent';
+  var avgOpen = validRows.reduce(function(s, r) { return s + parseFloat(r['Open Rate'] || 0); }, 0) / validRows.length;
+  var avgClick = validRows.reduce(function(s, r) { return s + parseFloat(r['Click Rate'] || 0); }, 0) / validRows.length;
+  var totalRev = validRows.reduce(function(s, r) { return s + parseFloat(r['Revenue Attributed'] || 0); }, 0);
+  document.getElementById('kpi-openrate').textContent = (avgOpen * 100).toFixed(1) + '%';
+  document.getElementById('kpi-openrate-sub').textContent = 'Average';
+  document.getElementById('kpi-clickrate').textContent = (avgClick * 100).toFixed(1) + '%';
+  document.getElementById('kpi-clickrate-sub').textContent = 'Average';
+  document.getElementById('kpi-emailrev').textContent = '$' + totalRev.toFixed(2);
+  document.getElementById('kpi-emailrev-sub').textContent = 'Total attributed';
+
+  tbody.innerHTML = validRows.map(function(r) {
+    return '<tr><td>' + (r['Date'] || '\u2014') + '</td>' +
+      '<td>' + r['Campaign Name'] + '</td>' +
+      '<td>' + (r['Recipients'] || '\u2014') + '</td>' +
+      '<td>' + (r['Open Rate'] ? (parseFloat(r['Open Rate']) * 100).toFixed(1) + '%' : '\u2014') + '</td>' +
+      '<td>' + (r['Click Rate'] ? (parseFloat(r['Click Rate']) * 100).toFixed(1) + '%' : '\u2014') + '</td>' +
+      '<td>' + (r['Revenue Attributed'] ? '$' + parseFloat(r['Revenue Attributed']).toFixed(2) : '\u2014') + '</td></tr>';
+  }).join('');
+}
+
+// =====================================================
+// RENDER: GA4
+// =====================================================
+function renderGA4(rows) {
+  if (rows.length === 0 && allGA4.length === 0) {
+    document.querySelectorAll('#ga4-kpis .kpi').forEach(function(k) { k.classList.add('pending'); });
+    return;
+  }
+  document.getElementById('ga4-badge').textContent = 'LIVE';
+  document.getElementById('ga4-badge').className = 'badge-live';
+  document.querySelectorAll('#ga4-kpis .kpi').forEach(function(k) { k.classList.remove('pending'); });
+
+  var days = rows.length;
+  var totSessions = rows.reduce(function(s, r) { return s + parseInt(r['Sessions'] || 0); }, 0);
+  var totViews = rows.reduce(function(s, r) { return s + parseInt(r['Page Views'] || r['Views'] || 0); }, 0);
+  var totUsers = rows.reduce(function(s, r) { return s + parseInt(r['Active Users'] || r['Users'] || 0); }, 0);
+  var avgEng = rows.length > 0 ? rows.reduce(function(s, r) { return s + parseFloat(r['Engagement Rate'] || 0); }, 0) / rows.length : 0;
+
+  document.getElementById('kpi-sessions').textContent = totSessions.toLocaleString();
+  document.getElementById('kpi-sessions-sub').textContent = days + '-day total';
+  document.getElementById('kpi-views').textContent = totViews.toLocaleString();
+  document.getElementById('kpi-views-sub').textContent = days + '-day total';
+  document.getElementById('kpi-users').textContent = totUsers.toLocaleString();
+  document.getElementById('kpi-users-sub').textContent = days + '-day total';
+  document.getElementById('kpi-engagement').textContent = (avgEng * 100).toFixed(1) + '%';
+  document.getElementById('kpi-engagement-sub').textContent = 'Period average';
+
+  trafficChart.data.labels = rows.map(function(r) { return fmtShort(toDate(r['Date'])); });
+  trafficChart.data.datasets[0].data = rows.map(function(r) { return parseInt(r['Sessions'] || 0); });
+  trafficChart.data.datasets[1].data = rows.map(function(r) { return parseInt(r['Page Views'] || r['Views'] || 0); });
+  trafficChart.update();
+
+  var dt = rows.reduce(function(s, r) { return s + parseInt(r['Desktop'] || 0); }, 0);
+  var mb = rows.reduce(function(s, r) { return s + parseInt(r['Mobile'] || 0); }, 0);
+  var tb = rows.reduce(function(s, r) { return s + parseInt(r['Tablet'] || 0); }, 0);
+  if (dt + mb + tb > 0) {
+    deviceChart.data.labels = ['Desktop', 'Mobile', 'Tablet'];
+    deviceChart.data.datasets[0].data = [dt, mb, tb];
+    deviceChart.data.datasets[0].backgroundColor = [blue, purple, amber];
+    deviceChart.update();
+  }
+}
+
+// =====================================================
+// RENDER: GSC
+// =====================================================
+function renderGSC(rows) {
+  if (rows.length === 0 && allGSC.length === 0) {
+    document.querySelectorAll('#gsc-kpis .kpi').forEach(function(k) { k.classList.add('pending'); });
+    return;
+  }
+  document.getElementById('gsc-badge').textContent = 'LIVE';
+  document.getElementById('gsc-badge').className = 'badge-live';
+  document.querySelectorAll('#gsc-kpis .kpi').forEach(function(k) { k.classList.remove('pending'); });
+
+  var totClicks = rows.reduce(function(s, r) { return s + parseInt(r['Clicks'] || 0); }, 0);
+  var totImpr = rows.reduce(function(s, r) { return s + parseInt(r['Impressions'] || 0); }, 0);
+  var ctr = totImpr > 0 ? ((totClicks / totImpr) * 100).toFixed(1) + '%' : '\u2014';
+  var avgPos = rows.length > 0 ? (rows.reduce(function(s, r) { return s + parseFloat(r['Position'] || r['Avg Position'] || 0); }, 0) / rows.length).toFixed(1) : '\u2014';
+
+  document.getElementById('kpi-clicks').textContent = totClicks.toLocaleString();
+  document.getElementById('kpi-impr').textContent = totImpr.toLocaleString();
+  document.getElementById('kpi-ctr').textContent = ctr;
+  document.getElementById('kpi-pos').textContent = avgPos;
+
+  gscChart.data.labels = rows.map(function(r) { return fmtShort(toDate(r['Date'])); });
+  gscChart.data.datasets[0].data = rows.map(function(r) { return parseInt(r['Clicks'] || 0); });
+  gscChart.data.datasets[1].data = rows.map(function(r) { return parseInt(r['Impressions'] || 0); });
+  gscChart.update();
+}
+
+// =====================================================
+// HIGHLIGHTS
+// =====================================================
+function renderHighlights(orders, abandoned) {
+  var container = document.getElementById('highlights-container');
+  var totalRevenue = orders.reduce(function(s, o) { return s + parseFloat(o['Total Price'] || 0); }, 0);
+  var totalOrders = orders.length;
+  var totalAbandoned = abandoned.length;
+  var totalProducts = allProducts.length;
+  var totalCustomers = allCustomers.length;
+  var cards = '';
+
+  if (totalOrders > 0) {
+    cards += '<div class="hl green"><div class="hl-tag">Revenue</div><div class="hl-txt"><strong>$' + totalRevenue.toLocaleString('en-US', {minimumFractionDigits:2}) + '</strong> from <strong>' + totalOrders + ' order' + (totalOrders > 1 ? 's' : '') + '</strong> in this period.</div></div>';
+  } else {
+    cards += '<div class="hl amber"><div class="hl-tag">Revenue</div><div class="hl-txt">No orders in the selected date range. Try expanding the filter or check Shopify for recent activity.</div></div>';
+  }
+  if (totalCustomers > 0) {
+    cards += '<div class="hl blue"><div class="hl-tag">Customers</div><div class="hl-txt"><strong>' + totalCustomers + ' customers</strong> in the database.' + (totalOrders > 0 ? ' Conversion rate: <strong>' + (totalOrders/totalCustomers*100).toFixed(1) + '%</strong>' : ' Growing the base.') + '</div></div>';
+  }
+  if (totalAbandoned > 0) {
+    var abandonedValue = abandoned.reduce(function(s, o) { return s + parseFloat(o['Total Price'] || 0); }, 0);
+    cards += '<div class="hl amber"><div class="hl-tag">Opportunity</div><div class="hl-txt"><strong>' + totalAbandoned + ' abandoned checkout' + (totalAbandoned > 1 ? 's' : '') + '</strong> worth <strong>$' + abandonedValue.toFixed(2) + '</strong>. Recovery emails could recapture 5\u201315% of this.</div></div>';
+  }
+  if (totalProducts > 0) {
+    var activeProducts = allProducts.filter(function(p) { return (p['Status'] || '').toUpperCase() === 'ACTIVE'; }).length;
+    cards += '<div class="hl green"><div class="hl-tag">Catalog</div><div class="hl-txt"><strong>' + activeProducts + ' active products</strong> in the Shopify store (' + totalProducts + ' total).</div></div>';
+  }
+  container.innerHTML = cards || '<div class="hl blue"><div class="hl-tag">Status</div><div class="hl-txt">Data loaded. Adjust the date filter to explore different time periods.</div></div>';
+}
+
+// =====================================================
+// EVENT LISTENERS
+// =====================================================
+document.getElementById('startDate').addEventListener('change', applyFilter);
+document.getElementById('endDate').addEventListener('change', applyFilter);
+
+document.querySelectorAll('.preset-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var range = btn.dataset.range;
+    var today = new Date();
+    var end = today.toISOString().split('T')[0];
+    var start;
+    if (range === 'all') { start = '2020-01-01'; }
+    else { var d = new Date(today); d.setDate(d.getDate() - parseInt(range)); start = d.toISOString().split('T')[0]; }
+    document.getElementById('startDate').value = start;
+    document.getElementById('endDate').value = end;
+    applyFilter();
+  });
+});
+
+// =====================================================
+// INIT
+// =====================================================
+loadAllData();
+</script>
 
 
-SEARCH VISIBILITY  ·  GOOGLE SEARCH CONSOLE
-PENDING FEED
-Clicks
-—
-Awaiting GSC data feed
-Impressions
-—
-Awaiting GSC data feed
-Click-Through Rate
-—
-Awaiting GSC data feed
-Avg Position
-—
-Awaiting GSC data feed
-Daily Search Performance
-Clicks & impressions
-
-Top Landing Pages
-By views
-
-Live data sources: Shopify Orders, Customers, Products, and Abandoned Checkouts are fetched live from Google Sheets on every page load. Klaviyo campaign data updates automatically when new campaigns are sent. 
-Pending feeds: GA4 and GSC sections will go live once their Zapier/Apps Script feeds populate the GA4_Daily and GSC_Daily tabs in the data sheet. No code changes needed — the dashboard will auto-detect them.
-SOURCES
-📊
-Looker Studio
-📈
-Data Sheet
-📊
-Google Analytics 4
-🔎
-Search Console
-✉️
-Klaviyo
-🔥
-Hotjar
-Trend Notes  ·  Performance Report
-Data: Google Sheets (live) · Looker Studio · Zapier
+</body></html>
