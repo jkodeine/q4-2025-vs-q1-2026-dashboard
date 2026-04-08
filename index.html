@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0218)file:///Users/jeany/Library/Application%20Support/Claude/local-agent-mode-sessions/ae30322c-2370-419e-b0b3-95f7d97b0064/06c575a0-8f99-496d-ae5c-217628cb4693/local_360a4ebb-97d3-4ef4-bfb0-9676452b1fd0/outputs/index.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trend Notes – Performance Report</title>
-<script src="./Trend Notes – Performance Report_files/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -121,10 +121,10 @@ canvas{display:block}
 <div class="header">
   <div class="header-left">
     <h1>Trend Notes</h1>
-    <p>Performance Report &nbsp;·&nbsp; <span class="live-dot"></span>Live Data</p>
+    <p>Performance Report &nbsp;&middot;&nbsp; <span class="live-dot"></span>Live Data</p>
   </div>
   <div class="header-right">
-    <span class="updated-time" id="lastUpdated">Updated Apr 7, 4:46 PM</span>
+    <span class="updated-time" id="lastUpdated">Loading...</span>
   </div>
 </div>
 
@@ -132,7 +132,7 @@ canvas{display:block}
 <div class="filter-bar">
   <label>From</label>
   <input type="date" id="startDate">
-  <span class="filter-sep">–</span>
+  <span class="filter-sep">&ndash;</span>
   <label>To</label>
   <input type="date" id="endDate">
   <div class="filter-presets">
@@ -145,7 +145,7 @@ canvas{display:block}
 
 <!-- PERIOD BADGE -->
 <div class="period-badge">
-  Showing data for <strong id="periodLabel">January 8, 2026 – April 7, 2026</strong>
+  Showing data for <strong id="periodLabel">...</strong>
 </div>
 
 <!-- BODY -->
@@ -153,17 +153,22 @@ canvas{display:block}
 
   <!-- HIGHLIGHTS (dynamically populated) -->
   <div class="section-label">Key Highlights</div>
-  <div class="highlights" id="highlights-container"><div class="hl amber"><div class="hl-tag">Revenue</div><div class="hl-txt">No orders in the selected date range. Try expanding the filter or check Shopify for recent activity.</div></div></div>
+  <div class="highlights" id="highlights-container">
+    <div class="hl green">
+      <div class="hl-tag">Loading</div>
+      <div class="hl-txt"><span class="loading-spinner"></span> Fetching live data...</div>
+    </div>
+  </div>
 
   <hr>
 
   <!-- SHOPIFY E-COMMERCE (LIVE) -->
-  <div class="section-label">E-commerce &nbsp;·&nbsp; Shopify <span class="badge-live">LIVE</span></div>
+  <div class="section-label">E-commerce &nbsp;&middot;&nbsp; Shopify <span class="badge-live">LIVE</span></div>
   <div class="kpi-grid g4" id="shopify-kpis">
-    <div class="kpi"><div class="k-label">Revenue</div><div class="k-value" id="kpi-revenue">$0.00</div><div class="k-sub" id="kpi-revenue-sub">No orders in period</div></div>
-    <div class="kpi"><div class="k-label">Orders</div><div class="k-value" id="kpi-orders">0</div><div class="k-sub" id="kpi-orders-sub">0 orders</div></div>
-    <div class="kpi"><div class="k-label">Avg Order Value</div><div class="k-value" id="kpi-aov">—</div><div class="k-sub" id="kpi-aov-sub">N/A</div></div>
-    <div class="kpi"><div class="k-label">Abandoned Checkouts</div><div class="k-value" id="kpi-abandoned">0</div><div class="k-sub" id="kpi-abandoned-sub">0 abandoned checkouts</div></div>
+    <div class="kpi"><div class="k-label">Revenue</div><div class="k-value" id="kpi-revenue"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-revenue-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Orders</div><div class="k-value" id="kpi-orders"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-orders-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Avg Order Value</div><div class="k-value" id="kpi-aov"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-aov-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Abandoned Checkouts</div><div class="k-value" id="kpi-abandoned"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-abandoned-sub">Loading...</div></div>
   </div>
 
   <!-- Revenue Trend + Orders by Source -->
@@ -172,14 +177,14 @@ canvas{display:block}
       <div class="chart-title">Revenue Over Time</div>
       <div class="chart-sub" id="revChartSub">Daily order revenue</div>
       <div style="position:relative;height:185px;">
-        <canvas id="revenueChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+        <canvas id="revenueChart"></canvas>
       </div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Orders by Shipping Country</div>
       <div class="chart-sub">From Shopify order data</div>
       <div style="position:relative;height:185px;">
-        <canvas id="countryChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+        <canvas id="countryChart"></canvas>
       </div>
     </div>
   </div>
@@ -187,43 +192,43 @@ canvas{display:block}
   <!-- Conversion Pipeline -->
   <div class="chart-card" style="margin-bottom:24px;">
     <div class="chart-title">Conversion Pipeline</div>
-    <div class="chart-sub">Customers → Orders → Abandoned</div>
+    <div class="chart-sub">Customers &rarr; Orders &rarr; Abandoned</div>
     <div class="funnel" id="funnel-container">
-      <div class="funnel-step"><div class="funnel-label">Customers</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-customers" style="width:100%;background:#2563eb;"><span>0</span></div></div><div class="funnel-pct">100%</div></div>
-      <div class="funnel-step"><div class="funnel-label">Ordered</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-ordered" style="width: 3%; background: rgb(124, 58, 237); min-width: 36px;"><span>0</span></div></div><div class="funnel-pct" id="funnel-ordered-pct">0.0%</div></div>
-      <div class="funnel-step"><div class="funnel-label">Abandoned</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-abandoned" style="width: 3%; background: rgb(217, 119, 6); min-width: 28px;"><span>0</span></div></div><div class="funnel-pct" id="funnel-abandoned-pct">0.0%</div></div>
+      <div class="funnel-step"><div class="funnel-label">Customers</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-customers" style="width:100%;background:#2563eb;"><span>...</span></div></div><div class="funnel-pct">100%</div></div>
+      <div class="funnel-step"><div class="funnel-label">Ordered</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-ordered" style="width:50%;background:#7c3aed;min-width:36px;"><span>...</span></div></div><div class="funnel-pct" id="funnel-ordered-pct">...</div></div>
+      <div class="funnel-step"><div class="funnel-label">Abandoned</div><div class="funnel-bar-wrap"><div class="funnel-bar-fill" id="funnel-abandoned" style="width:30%;background:#d97706;min-width:28px;"><span>...</span></div></div><div class="funnel-pct" id="funnel-abandoned-pct">...</div></div>
     </div>
   </div>
 
   <!-- Top Customers Table -->
   <div class="chart-card" style="margin-bottom:24px;">
     <div class="chart-title">Top Customers</div>
-    <div class="chart-sub">By total spent · from Shopify</div>
+    <div class="chart-sub">By total spent &middot; from Shopify</div>
     <table class="data-table" id="customers-table">
       <thead><tr><th>Customer</th><th>Orders</th><th>Total Spent</th><th>City</th><th>Country</th></tr></thead>
-      <tbody id="customers-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No customer data available</td></tr></tbody>
+      <tbody id="customers-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;"><span class="loading-spinner"></span> Loading...</td></tr></tbody>
     </table>
   </div>
 
   <!-- Top Products Table -->
   <div class="chart-card" style="margin-bottom:24px;">
     <div class="chart-title">Product Catalog</div>
-    <div class="chart-sub">Active products · from Shopify</div>
+    <div class="chart-sub">Active products &middot; from Shopify</div>
     <table class="data-table" id="products-table">
       <thead><tr><th>Product</th><th>Type</th><th>Vendor</th><th>Inventory</th><th>Status</th></tr></thead>
-      <tbody id="products-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;">No product data available</td></tr></tbody>
+      <tbody id="products-tbody"><tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px;"><span class="loading-spinner"></span> Loading...</td></tr></tbody>
     </table>
   </div>
 
   <hr>
 
   <!-- KLAVIYO EMAIL (LIVE) -->
-  <div class="section-label">Email Marketing &nbsp;·&nbsp; Klaviyo <span class="badge-live">LIVE</span></div>
+  <div class="section-label">Email Marketing &nbsp;&middot;&nbsp; Klaviyo <span class="badge-live">LIVE</span></div>
   <div class="kpi-grid g4" id="klaviyo-kpis">
-    <div class="kpi"><div class="k-label">Campaigns</div><div class="k-value" id="kpi-campaigns">0</div><div class="k-sub" id="kpi-campaigns-sub">No campaigns yet</div></div>
-    <div class="kpi"><div class="k-label">Avg Open Rate</div><div class="k-value" id="kpi-openrate">—</div><div class="k-sub" id="kpi-openrate-sub">Pending</div></div>
-    <div class="kpi"><div class="k-label">Avg Click Rate</div><div class="k-value" id="kpi-clickrate">—</div><div class="k-sub" id="kpi-clickrate-sub">Pending</div></div>
-    <div class="kpi"><div class="k-label">Revenue Attributed</div><div class="k-value" id="kpi-emailrev">—</div><div class="k-sub" id="kpi-emailrev-sub">Pending</div></div>
+    <div class="kpi"><div class="k-label">Campaigns</div><div class="k-value" id="kpi-campaigns"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-campaigns-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Avg Open Rate</div><div class="k-value" id="kpi-openrate"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-openrate-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Avg Click Rate</div><div class="k-value" id="kpi-clickrate"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-clickrate-sub">Loading...</div></div>
+    <div class="kpi"><div class="k-label">Revenue Attributed</div><div class="k-value" id="kpi-emailrev"><span class="loading-spinner"></span></div><div class="k-sub" id="kpi-emailrev-sub">Loading...</div></div>
   </div>
 
   <!-- Klaviyo Campaign Table -->
@@ -232,19 +237,19 @@ canvas{display:block}
     <div class="chart-sub">From Klaviyo via Google Sheets</div>
     <table class="data-table">
       <thead><tr><th>Date</th><th>Campaign</th><th>Recipients</th><th>Open Rate</th><th>Click Rate</th><th>Revenue</th></tr></thead>
-      <tbody id="klaviyo-tbody"><tr><td colspan="6" style="text-align:center;color:#bbb;padding:20px;">No campaigns sent yet. Data will appear here automatically.</td></tr></tbody>
+      <tbody id="klaviyo-tbody"><tr><td colspan="6" style="text-align:center;color:#bbb;padding:20px;"><span class="loading-spinner"></span> Loading...</td></tr></tbody>
     </table>
   </div>
 
   <hr>
 
   <!-- GA4 SITE TRAFFIC (PENDING FEED) -->
-  <div class="section-label">Site Traffic &nbsp;·&nbsp; Google Analytics 4 <span class="badge-pending" id="ga4-badge">PENDING FEED</span></div>
+  <div class="section-label">Site Traffic &nbsp;&middot;&nbsp; Google Analytics 4 <span class="badge-pending" id="ga4-badge">PENDING FEED</span></div>
   <div class="kpi-grid g4" id="ga4-kpis">
-    <div class="kpi pending"><div class="k-label">Sessions</div><div class="k-value" id="kpi-sessions">—</div><div class="k-sub" id="kpi-sessions-sub">Awaiting GA4 data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Page Views</div><div class="k-value" id="kpi-views">—</div><div class="k-sub" id="kpi-views-sub">Awaiting GA4 data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Active Users</div><div class="k-value" id="kpi-users">—</div><div class="k-sub" id="kpi-users-sub">Awaiting GA4 data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Engagement Rate</div><div class="k-value" id="kpi-engagement">—</div><div class="k-sub" id="kpi-engagement-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Sessions</div><div class="k-value" id="kpi-sessions">&mdash;</div><div class="k-sub" id="kpi-sessions-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Page Views</div><div class="k-value" id="kpi-views">&mdash;</div><div class="k-sub" id="kpi-views-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Active Users</div><div class="k-value" id="kpi-users">&mdash;</div><div class="k-sub" id="kpi-users-sub">Awaiting GA4 data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Engagement Rate</div><div class="k-value" id="kpi-engagement">&mdash;</div><div class="k-sub" id="kpi-engagement-sub">Awaiting GA4 data feed</div></div>
   </div>
 
   <div class="chart-grid-3">
@@ -252,14 +257,14 @@ canvas{display:block}
       <div class="chart-title">Traffic Trend</div>
       <div class="chart-sub" id="trafficChartSub">Sessions &amp; views</div>
       <div style="position:relative;height:185px;">
-        <canvas id="trafficChart" width="414" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 414px;"></canvas>
+        <canvas id="trafficChart"></canvas>
       </div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Sessions by Device</div>
       <div class="chart-sub">GA4 breakdown</div>
       <div style="position:relative;height:185px;">
-        <canvas id="deviceChart" width="300" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 300px;"></canvas>
+        <canvas id="deviceChart"></canvas>
       </div>
     </div>
   </div>
@@ -267,12 +272,12 @@ canvas{display:block}
   <hr>
 
   <!-- GSC SEARCH (PENDING FEED) -->
-  <div class="section-label">Search Visibility &nbsp;·&nbsp; Google Search Console <span class="badge-pending" id="gsc-badge">PENDING FEED</span></div>
+  <div class="section-label">Search Visibility &nbsp;&middot;&nbsp; Google Search Console <span class="badge-pending" id="gsc-badge">PENDING FEED</span></div>
   <div class="kpi-grid g4" id="gsc-kpis">
-    <div class="kpi pending"><div class="k-label">Clicks</div><div class="k-value" id="kpi-clicks">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Impressions</div><div class="k-value" id="kpi-impr">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Click-Through Rate</div><div class="k-value" id="kpi-ctr">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
-    <div class="kpi pending"><div class="k-label">Avg Position</div><div class="k-value" id="kpi-pos">—</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Clicks</div><div class="k-value" id="kpi-clicks">&mdash;</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Impressions</div><div class="k-value" id="kpi-impr">&mdash;</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Click-Through Rate</div><div class="k-value" id="kpi-ctr">&mdash;</div><div class="k-sub">Awaiting GSC data feed</div></div>
+    <div class="kpi pending"><div class="k-label">Avg Position</div><div class="k-value" id="kpi-pos">&mdash;</div><div class="k-sub">Awaiting GSC data feed</div></div>
   </div>
 
   <div class="chart-grid-2">
@@ -280,14 +285,14 @@ canvas{display:block}
       <div class="chart-title">Daily Search Performance</div>
       <div class="chart-sub" id="gscChartSub">Clicks &amp; impressions</div>
       <div style="position:relative;height:185px;">
-        <canvas id="gscChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+        <canvas id="gscChart"></canvas>
       </div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Top Landing Pages</div>
       <div class="chart-sub">By views</div>
       <div style="position:relative;height:185px;">
-        <canvas id="pagesChart" width="357" height="185" style="display: block; box-sizing: border-box; height: 185px; width: 357px;"></canvas>
+        <canvas id="pagesChart"></canvas>
       </div>
     </div>
   </div>
@@ -295,7 +300,7 @@ canvas{display:block}
   <!-- DATA NOTE -->
   <div class="data-note">
     <strong>Live data sources:</strong> Shopify Orders, Customers, Products, and Abandoned Checkouts are fetched live from Google Sheets on every page load. Klaviyo campaign data updates automatically when new campaigns are sent.
-    <br><strong>Pending feeds:</strong> GA4 and GSC sections will go live once their Zapier/Apps Script feeds populate the <code>GA4_Daily</code> and <code>GSC_Daily</code> tabs in the data sheet. No code changes needed — the dashboard will auto-detect them.
+    <br><strong>Pending feeds:</strong> GA4 and GSC sections will go live once their Zapier/Apps Script feeds populate the <code>GA4_Daily</code> and <code>GSC_Daily</code> tabs in the data sheet. No code changes needed &mdash; the dashboard will auto-detect them.
   </div>
 
 </div>
@@ -303,18 +308,18 @@ canvas{display:block}
 <!-- SOURCE LINKS -->
 <div class="sources">
   <span class="sources-label">Sources</span>
-  <a class="src-link" href="https://lookerstudio.google.com/u/1/reporting/96cbc8e5-8ba5-4880-9fdd-ba84d90374a0" target="_blank"><span class="src-icon">📊</span> Looker Studio</a>
-  <a class="src-link" href="https://docs.google.com/spreadsheets/d/1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4" target="_blank"><span class="src-icon">📈</span> Data Sheet</a>
-  <a class="src-link" href="https://analytics.google.com/" target="_blank"><span class="src-icon">📊</span> Google Analytics 4</a>
-  <a class="src-link" href="https://search.google.com/search-console/" target="_blank"><span class="src-icon">🔎</span> Search Console</a>
-  <a class="src-link" href="https://app.klaviyo.com/" target="_blank"><span class="src-icon">✉️</span> Klaviyo</a>
-  <a class="src-link" href="https://insights.hotjar.com/sites/6507654/dashboard" target="_blank"><span class="src-icon">🔥</span> Hotjar</a>
+  <a class="src-link" href="https://lookerstudio.google.com/u/1/reporting/96cbc8e5-8ba5-4880-9fdd-ba84d90374a0" target="_blank"><span class="src-icon">&#128202;</span> Looker Studio</a>
+  <a class="src-link" href="https://docs.google.com/spreadsheets/d/1D5qKSL_1cdEhx3WTJQ437c8ckBCPW1X9tpNTimBy_g4" target="_blank"><span class="src-icon">&#128200;</span> Data Sheet</a>
+  <a class="src-link" href="https://analytics.google.com/" target="_blank"><span class="src-icon">&#128202;</span> Google Analytics 4</a>
+  <a class="src-link" href="https://search.google.com/search-console/" target="_blank"><span class="src-icon">&#128270;</span> Search Console</a>
+  <a class="src-link" href="https://app.klaviyo.com/" target="_blank"><span class="src-icon">&#9993;&#65039;</span> Klaviyo</a>
+  <a class="src-link" href="https://insights.hotjar.com/sites/6507654/dashboard" target="_blank"><span class="src-icon">&#128293;</span> Hotjar</a>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="brand">Trend Notes &nbsp;·&nbsp; Performance Report</div>
-  <div class="note">Data: Google Sheets (live) · Looker Studio · Zapier</div>
+  <div class="brand">Trend Notes &nbsp;&middot;&nbsp; Performance Report</div>
+  <div class="note">Data: Google Sheets (live) &middot; Looker Studio &middot; Zapier</div>
 </div>
 
 </div>
@@ -795,6 +800,5 @@ document.querySelectorAll('.preset-btn').forEach(function(btn) {
 // =====================================================
 loadAllData();
 </script>
-
-
-</body></html>
+</body>
+</html>
