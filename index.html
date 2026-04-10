@@ -468,7 +468,7 @@ html.light .toggle-thumb{transform:translateX(16px);background:var(--accent)}
     </div>
 
     <div class="panel">
-      <div class="panel-title">All Order Types</div>
+      <div class="panel-title">Top 15 Order Types by Revenue</div>
       <div class="panel-sub">From BigQuery Extract 4</div>
       <table class="data-table" id="ordertypes-table">
         <thead><tr><th>Order Type</th><th>Customers</th><th>Invoices</th><th>Revenue</th><th>Avg Invoice</th></tr></thead>
@@ -1251,9 +1251,9 @@ function renderOrderTypes() {
   orderTypesInvoiceChart.data.datasets[0].backgroundColor = top10inv.map(function(_, i) { return colors[i % colors.length]; });
   orderTypesInvoiceChart.update();
 
-  // Table (all rows)
+  // Table (top 15 by revenue)
   var tbody = document.getElementById('ordertypes-tbody');
-  tbody.innerHTML = sorted.map(function(c) {
+  tbody.innerHTML = sorted.slice(0, 15).map(function(c) {
     return '<tr><td><strong>' + (c['OrderType'] || 'Unknown') + '</strong></td>' +
       '<td>' + parseInt(c['customer_count'] || 0).toLocaleString() + '</td>' +
       '<td>' + parseInt(c['total_invoices'] || 0).toLocaleString() + '</td>' +
